@@ -1,6 +1,6 @@
-@Anamnesis.Server_HostAddress = http://localhost:5063
+@Anamnesis_Server_HostAddress = http://localhost:5000
 
-GET {{Anamnesis.Server_HostAddress}}/todos/
+GET {{Anamnesis_Server_HostAddress}}/namespace/name/system/versions
 Accept: application/json
 
 ###
