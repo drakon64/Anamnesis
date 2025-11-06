@@ -2,10 +2,8 @@ using System.Text.Json.Serialization;
 
 namespace Anamnesis.Server.GoogleCloud;
 
-internal static partial class CloudStorage
+internal static partial class GoogleCloud
 {
-    private static readonly HttpClient HttpClient = new();
-
     private static async Task<string> GetAccessToken()
     {
         using var request = new HttpRequestMessage();
