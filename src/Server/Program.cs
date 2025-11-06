@@ -16,16 +16,12 @@ app.MapGet(
     "{namespace}/{name}/{system}/versions",
     () =>
     {
-        return new Versions
+        var versions = new Versions.Module.ModuleVersion[]
         {
-            Modules =
-            [
-                new Versions.Module
-                {
-                    Versions = [new Versions.Module.ModuleVersion { Version = "0.0.1" }],
-                },
-            ],
+            new Versions.Module.ModuleVersion { Version = "0.0.1" },
         };
+
+        return new Versions { Modules = [new Versions.Module { Versions = versions }] };
     }
 );
 
