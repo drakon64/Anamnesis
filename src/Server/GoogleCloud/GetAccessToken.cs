@@ -1,5 +1,3 @@
-using System.Text.Json.Serialization;
-
 namespace Anamnesis.Server.GoogleCloud;
 
 internal static partial class GoogleCloud
@@ -19,18 +17,15 @@ internal static partial class GoogleCloud
             throw new Exception(await response.Content.ReadAsStringAsync());
 
         var token = await response.Content.ReadFromJsonAsync<AccessTokenResponse>(
-            AccessTokenResponseJsonSerializerContext.Default.AccessTokenResponse
+            SourceGenerationContext.Default.AccessTokenResponse
         );
 
         return $"{token!.TokenType} {token.AccessToken}";
     }
 
-    private sealed class AccessTokenResponse
+    internal sealed class AccessTokenResponse
     {
         public required string AccessToken { get; init; }
         public required string TokenType { get; init; }
     }
-
-    [JsonSerializable(typeof(AccessTokenResponse))]
-    private partial class AccessTokenResponseJsonSerializerContext : JsonSerializerContext;
 }
