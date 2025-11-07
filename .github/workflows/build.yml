@@ -37,7 +37,9 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Build
-        run: cachix watch-exec drakon64 -- nix-build -A client -A server.docker
+        run: |
+          cachix watch-exec drakon64 -- nix-build -A client --no-out-link
+          cachix watch-exec drakon64 -- nix-build -A server.docker
 
       - name: Create Cachix pins
         run: |
