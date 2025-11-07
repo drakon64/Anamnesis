@@ -19,7 +19,7 @@ app.MapGet(
     "{registryNamespace}/{name}/{system}/versions",
     async (string registryNamespace, string name, string system) =>
     {
-        ModuleVersion[] versions = (
+        var versions = (
             from item in await GoogleCloud.ListObjects(
                 bucket,
                 $"{registryNamespace}/{name}/{system}"
