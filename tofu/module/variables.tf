@@ -1,0 +1,12 @@
+variable "bucket_location" {
+  type = string
+}
+
+variable "bucket_name" {
+  type = string
+}
+
+variable "use_ghcr" {
+  description = "Use pre-built Anamnesis images from GitHub Packages"
+  default     = true
+}

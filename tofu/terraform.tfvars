@@ -1,0 +1,5 @@
+bucket_location = "eu"
+bucket_name     = "anamnesis.drakon.cloud"
+project         = "anamnesis-drakon64"
+region          = "europe-west2"
+state_bucket    = "drakon64-tfstate"
