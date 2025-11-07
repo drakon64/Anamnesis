@@ -56,7 +56,7 @@ jobs:
       - name: Upload Server to GitHub Packages
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ./src/Server
           push: true
           tags: ghcr.io/drakon64/anamnesis-server:latest
         env:
