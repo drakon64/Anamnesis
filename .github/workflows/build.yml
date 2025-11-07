@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - src/**.cs
-      - src/Ktisis.csproj
+      - src/Anamnesis.csproj
       - src/package.nix
       - default.nix
       - lon.nix
@@ -53,7 +53,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload Server to GitHub Packages
+      - name: Upload to GitHub Packages
         uses: docker/build-push-action@v6
         with:
           context: .
