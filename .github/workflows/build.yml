@@ -42,7 +42,7 @@ jobs:
       - name: Create Cachix pins
         run: |
           cachix pin drakon64 anamnesis-server "$(nix eval --file ./default.nix server --raw --impure)" --keep-revisions 1
-          cachix pin drakon64 anamnesis-server-docker "$(nix eval --expr '(import ./. {}).server.docker {}' --raw --impure)" --keep-revisions 1
+          cachix pin drakon64 anamnesis-server-docker "$(nix eval --expr '(import ./. {}).server.docker' --raw --impure)" --keep-revisions 1
 
       - run: docker load < result
 
