@@ -5,13 +5,13 @@ on:
     branches:
       - main
     paths:
-      - src/**/*.cs
-      - src/**/*.csproj
-      - src/**/package.nix
-      - src/**/Dockerfile
+      - src/**.cs
+      - src/Ktisis.csproj
+      - src/package.nix
       - default.nix
       - lon.nix
       - lon.lock
+      - Dockerfile
       - .github/workflows/build.yml
   workflow_dispatch:
 
@@ -37,15 +37,12 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Build
-        run: |
-          cachix watch-exec drakon64 -- nix-build -A client --no-out-link
-          cachix watch-exec drakon64 -- nix-build -A server.docker
+        run: cachix watch-exec drakon64 -- nix-build -A docker
 
       - name: Create Cachix pins
         run: |
-          cachix pin drakon64 anamnesis-client "$(nix eval --file ./default.nix client --raw --impure)" --keep-revisions 1
-          cachix pin drakon64 anamnesis-server "$(nix eval --file ./default.nix server --raw --impure)" --keep-revisions 1
-          cachix pin drakon64 anamnesis-server-docker "$(nix eval --expr '(import ./. {}).server.docker' --raw --impure)" --keep-revisions 1
+          cachix pin drakon64 anamnesis "$(nix eval --expr 'import ./. {}' --raw --impure)" --keep-revisions 1
+          cachix pin drakon64 anamnesis-docker "$(nix eval --expr '(import ./. {}).docker' --raw --impure)" --keep-revisions 1
 
       - run: docker load < result
 
@@ -59,8 +56,8 @@ jobs:
       - name: Upload Server to GitHub Packages
         uses: docker/build-push-action@v6
         with:
-          context: ./src/Server
+          context: .
           push: true
-          tags: ghcr.io/drakon64/anamnesis-server:latest
+          tags: ghcr.io/drakon64/anamnesis:latest
         env:
           SOURCE_DATE_EPOCH: 0

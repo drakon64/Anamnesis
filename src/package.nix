@@ -10,8 +10,8 @@ let
   fs = lib.fileset;
 in
 buildDotnetModule (finalAttrs: {
-  pname = "anamnesis-server";
-  version = builtins.readFile ../../version;
+  pname = "anamnesis";
+  version = builtins.readFile ../version;
 
   src = fs.toSource {
     root = ./.;
@@ -24,29 +24,27 @@ buildDotnetModule (finalAttrs: {
         (lib.fileset.maybeMissing ./obj)
 
         ./package.nix
-
-        ./Dockerfile
       ]
     );
   };
 
-  projectFile = "Anamnesis.Server.csproj";
+  projectFile = "Anamnesis.csproj";
 
   dotnet-sdk = dotnetCorePackages.sdk_9_0;
   dotnet-runtime = null;
 
-  executables = [ "Anamnesis.Server" ];
+  executables = [ "Anamnesis" ];
 
   selfContainedBuild = true;
 
   meta = {
     license = lib.licenses.eupl12;
-    mainProgram = "Anamnesis.Server";
+    mainProgram = "Anamnesis";
     maintainers = with lib.maintainers; [ drakon64 ];
   };
 
   passthru.docker = dockerTools.buildLayeredImage {
-    name = "anamnesis-server";
+    name = "anamnesis";
     tag = "latest";
 
     config = {

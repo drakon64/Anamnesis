@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-using Anamnesis.Server.GoogleCloud;
+using Anamnesis.GoogleCloud;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 
