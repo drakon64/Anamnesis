@@ -10,7 +10,7 @@ let
   fs = lib.fileset;
 in
 buildDotnetModule (finalAttrs: {
-  pname = "anamnesis-receiver";
+  pname = "anamnesis-server";
   version = builtins.readFile ../../version;
 
   src = fs.toSource {
