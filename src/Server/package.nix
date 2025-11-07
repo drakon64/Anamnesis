@@ -23,6 +23,8 @@ buildDotnetModule (finalAttrs: {
         (lib.fileset.maybeMissing ./obj)
 
         ./package.nix
+
+        ./Dockerfile
       ]
     );
   };
@@ -43,7 +45,7 @@ buildDotnetModule (finalAttrs: {
   };
 
   passthru.docker = dockerTools.buildLayeredImage {
-    name = "anamnesis";
+    name = "anamnesis-server";
     tag = "latest";
 
     config = {

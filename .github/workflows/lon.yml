@@ -1,0 +1,52 @@
+name: Lon
+
+on:
+  schedule:
+    - cron: "0 12 * * 1-5"
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install Lix
+        uses: samueldr/lix-gha-installer-action@v2025-02-26.prerelease
+
+      - name: Install Cachix
+        uses: cachix/cachix-action@v16
+        with:
+          name: drakon64
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
+      - name: Build Nix shell
+        run: nix-shell -A lon --run "exit"
+
+      - name: Evaluate with current lockfile
+        run: |
+          echo "CURRENT_SERVER_HASH=$(nix eval --expr '(import ./. {}).server.docker {}' --raw --impure)" >> "$GITHUB_ENV"
+          echo "CURRENT_SHELL_HASH=$(nix eval --expr 'import ./shell.nix {}' --raw --impure)" >> "$GITHUB_ENV"
+
+      - name: Update Lon lockfile
+        run: nix-shell -A lon --run "lon update nixpkgs"
+
+      - name: Build and evaluate with updated lockfile
+        run: |
+          echo "NEW_SERVER_HASH=$(nix eval --expr '(import ./. {}).server.docker {}' --raw --impure)" >> "$GITHUB_ENV"
+          echo "NEW_SHELL_HASH=$(nix eval --expr 'import ./shell.nix {}' --raw --impure)" >> "$GITHUB_ENV"
+
+      - name: Open pull request
+        run: |
+          git checkout lon.lock
+          nix-shell -A lon --run "lon bot github"
+        env:
+          LON_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LON_LABELS: "lon,bot"
+        if: ${{ env.NEW_SERVER_HASH != env.CURRENT_SERVER_HASH || env.NEW_SHELL_HASH != env.CURRENT_SHELL_HASH }}
