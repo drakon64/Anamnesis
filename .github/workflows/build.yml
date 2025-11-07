@@ -8,10 +8,10 @@ on:
       - src/**/*.cs
       - src/**/*.csproj
       - src/**/package.nix
+      - src/**/Dockerfile
       - default.nix
       - lon.nix
       - lon.lock
-      - Dockerfile
       - .github/workflows/build.yml
   workflow_dispatch:
 
