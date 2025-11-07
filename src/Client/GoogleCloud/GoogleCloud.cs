@@ -1,4 +1,4 @@
-namespace Anamnesis.Server.GoogleCloud;
+namespace Anamnesis.Client.GoogleCloud;
 
 internal static partial class GoogleCloud
 {
