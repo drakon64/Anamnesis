@@ -46,7 +46,7 @@ app.MapGet(
     }
 );
 
-app.Run();
+app.Run($"http://*:{Environment.GetEnvironmentVariable("PORT")}");
 
 internal sealed class ServiceIdentifiers
 {

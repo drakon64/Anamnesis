@@ -16,4 +16,6 @@ module "anamnesis" {
 
   bucket_location = var.bucket_location
   bucket_name     = var.bucket_name
+  project         = var.project
+  region          = var.region
 }
