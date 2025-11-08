@@ -11,11 +11,13 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 
 var app = builder.Build();
 
+var serviceIdentifiers = new ServiceIdentifiers();
+
 var bucket =
     Environment.GetEnvironmentVariable("ANAMNESIS_BUCKET")
     ?? throw new InvalidOperationException("ANAMNESIS_BUCKET is null");
 
-app.MapGet("/.well-known/terraform.json", () => new ServiceIdentifiers());
+app.MapGet("/.well-known/terraform.json", () => serviceIdentifiers);
 
 app.MapGet(
     "{registryNamespace}/{name}/{system}/versions",
