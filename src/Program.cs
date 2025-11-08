@@ -48,26 +48,26 @@ app.MapGet(
 
 app.Run();
 
-internal class ServiceIdentifiers
+internal sealed class ServiceIdentifiers
 {
     [JsonInclude]
     [JsonPropertyName("modules.v1")]
     public const string ModulesV1 = "";
 }
 
-internal class Versions
+internal sealed class Versions
 {
     [JsonPropertyName("modules")]
     public required Module[] Modules { get; init; }
 }
 
-internal class Module
+internal sealed class Module
 {
     [JsonPropertyName("versions")]
     public required ModuleVersion[] Versions { get; init; }
 }
 
-internal class ModuleVersion
+internal sealed class ModuleVersion
 {
     [JsonPropertyName("version")]
     public required string Version { get; init; }
