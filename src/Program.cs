@@ -15,6 +15,8 @@ var bucket =
     Environment.GetEnvironmentVariable("ANAMNESIS_BUCKET")
     ?? throw new InvalidOperationException("ANAMNESIS_BUCKET is null");
 
+app.MapGet("/.well-known/terraform.json", () => new ServiceIdentifiers());
+
 app.MapGet(
     "{registryNamespace}/{name}/{system}/versions",
     async (string registryNamespace, string name, string system) =>
@@ -44,6 +46,13 @@ app.MapGet(
 
 app.Run();
 
+internal class ServiceIdentifiers
+{
+    [JsonInclude]
+    [JsonPropertyName("modules.v1")]
+    public const string ModulesV1 = "";
+}
+
 internal class Versions
 {
     [JsonPropertyName("modules")]
@@ -62,6 +71,7 @@ internal class ModuleVersion
     public required string Version { get; init; }
 }
 
+[JsonSerializable(typeof(ServiceIdentifiers))]
 [JsonSerializable(typeof(Versions))]
 [JsonSerializable(typeof(GoogleCloud.AccessTokenResponse))]
 [JsonSerializable(typeof(GoogleCloud.ListObjectsResponse))]
