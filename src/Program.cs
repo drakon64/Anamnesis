@@ -24,7 +24,7 @@ var bucket =
 app.MapGet("/.well-known/terraform.json", () => serviceIdentifiers);
 
 app.MapGet(
-    "{registryNamespace}/{name}/{system}/versions",
+    "/{registryNamespace}/{name}/{system}/versions",
     async (string registryNamespace, string name, string system) =>
     {
         var versions = (
@@ -40,7 +40,7 @@ app.MapGet(
 );
 
 app.MapGet(
-    "{registryNamespace}/{name}/{system}/{version}/download",
+    "/{registryNamespace}/{name}/{system}/{version}/download",
     (HttpContext context, string registryNamespace, string name, string system, string version) =>
     {
         context.Response.Headers["X-Terraform-Get"] =
