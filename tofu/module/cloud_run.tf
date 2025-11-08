@@ -24,7 +24,9 @@ resource "google_cloud_run_v2_service" "service" {
   location = var.region
   name     = "anamnesis"
 
-  ingress = "INGRESS_TRAFFIC_ALL"
+  default_uri_disabled = true
+  ingress              = "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER"
+  invoker_iam_disabled = true
 
   template {
     containers {
