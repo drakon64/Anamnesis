@@ -56,7 +56,7 @@ resource "google_cloud_run_v2_service" "service" {
       }
     }
 
-    max_instance_request_concurrency = 100
+    max_instance_request_concurrency = 1000
 
     scaling {
       max_instance_count = 1
