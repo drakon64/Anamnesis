@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Anamnesis.GoogleCloud;
 
 internal static partial class GoogleCloud
@@ -25,7 +27,10 @@ internal static partial class GoogleCloud
 
     internal sealed class AccessTokenResponse
     {
+        [JsonPropertyName("access_token")]
         public required string AccessToken { get; init; }
+
+        [JsonPropertyName("token_type")]
         public required string TokenType { get; init; }
     }
 }
