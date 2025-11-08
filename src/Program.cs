@@ -52,7 +52,7 @@ internal sealed class ServiceIdentifiers
 {
     [JsonInclude]
     [JsonPropertyName("modules.v1")]
-    public readonly string ModulesV1 = "";
+    public readonly string ModulesV1 = "/terraform/modules/v1/";
 }
 
 internal sealed class Versions
