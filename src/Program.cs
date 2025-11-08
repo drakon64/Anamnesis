@@ -28,7 +28,7 @@ app.MapGet(
                 bucket,
                 $"{registryNamespace}/{name}/{system}"
             )
-            select new ModuleVersion { Version = item.Name[..(item.Name.IndexOf('.') - 1)] }
+            select new ModuleVersion { Version = item.Name[..(item.Name.LastIndexOf('.') - 1)] }
         ).ToArray();
 
         return new Versions { Modules = [new Module { Versions = versions }] };
