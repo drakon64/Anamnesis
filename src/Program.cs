@@ -11,16 +11,16 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 
 var app = builder.Build();
 
-var serviceIdentifiers = new ServiceIdentifiers();
+var remoteServiceDiscovery = new RemoteServiceDiscovery();
 
 var bucket =
     Environment.GetEnvironmentVariable("ANAMNESIS_BUCKET")
     ?? throw new InvalidOperationException("ANAMNESIS_BUCKET is null");
 
-app.MapGet("/.well-known/terraform.json", () => serviceIdentifiers);
+app.MapGet("/.well-known/terraform.json", () => remoteServiceDiscovery);
 
 app.MapGet(
-    "/{registryNamespace}/{name}/{system}/versions",
+    remoteServiceDiscovery.ModulesV1 + "{registryNamespace}/{name}/{system}/versions",
     async (string registryNamespace, string name, string system) =>
     {
         var versions = (
@@ -36,7 +36,7 @@ app.MapGet(
 );
 
 app.MapGet(
-    "/{registryNamespace}/{name}/{system}/{version}/download",
+    remoteServiceDiscovery.ModulesV1 + "{registryNamespace}/{name}/{system}/{version}/download",
     (HttpContext context, string registryNamespace, string name, string system, string version) =>
     {
         context.Response.Headers["X-Terraform-Get"] =
@@ -48,7 +48,7 @@ app.MapGet(
 
 app.Run($"http://*:{Environment.GetEnvironmentVariable("PORT")}");
 
-internal sealed class ServiceIdentifiers
+internal sealed class RemoteServiceDiscovery
 {
     [JsonInclude]
     [JsonPropertyName("modules.v1")]
@@ -73,7 +73,7 @@ internal sealed class ModuleVersion
     public required string Version { get; init; }
 }
 
-[JsonSerializable(typeof(ServiceIdentifiers))]
+[JsonSerializable(typeof(RemoteServiceDiscovery))]
 [JsonSerializable(typeof(Versions))]
 [JsonSerializable(typeof(GoogleCloud.AccessTokenResponse))]
 [JsonSerializable(typeof(GoogleCloud.ListObjectsResponse))]
