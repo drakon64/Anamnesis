@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Anamnesis.GoogleCloud;
 
 internal static partial class GoogleCloud
@@ -30,12 +32,16 @@ internal static partial class GoogleCloud
 
     internal sealed class ListObjectsResponse
     {
+        [JsonPropertyName("items")]
         public required Item[] Items { get; init; }
     }
 
     internal sealed class Item
     {
+        [JsonPropertyName("name")]
         public required string Name { get; init; }
+
+        [JsonPropertyName("metadata")]
         public required Dictionary<string, string> Metadata { get; init; }
     }
 }
