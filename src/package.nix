@@ -47,8 +47,8 @@ buildDotnetModule (finalAttrs: {
     name = "anamnesis";
     tag = "latest";
 
-    config = {
-      Entrypoint = [ (lib.getExe finalAttrs.finalPackage) ];
-    };
+    config.Entrypoint = [ (lib.getExe finalAttrs.finalPackage) ];
+
+    contents = [ dockerTools.caCertificates ];
   };
 })
