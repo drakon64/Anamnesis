@@ -52,7 +52,7 @@ internal sealed class ServiceIdentifiers
 {
     [JsonInclude]
     [JsonPropertyName("modules.v1")]
-    public const string ModulesV1 = "";
+    public readonly string ModulesV1 = "";
 }
 
 internal sealed class Versions
