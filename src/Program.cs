@@ -31,9 +31,7 @@ app.MapGet(
             where item.ContentType == "application/zip"
             select new ModuleVersion
             {
-                Version = item.Name[
-                    (item.Name.LastIndexOf('/') + 1)..(item.Name.LastIndexOf('.') - 1)
-                ],
+                Version = item.Name[(item.Name.LastIndexOf('/') + 1)..item.Name.LastIndexOf('.')],
             }
         ).ToArray();
 
