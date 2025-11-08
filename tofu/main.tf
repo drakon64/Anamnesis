@@ -12,10 +12,7 @@ provider "google" {
 }
 
 module "anamnesis" {
-  # source = "./module"
-
-  source = "anamnesis.drakon.cloud/drakon64/anamnesis/google"
-  version = "0.0.1"
+  source = "./module"
 
   bucket_location = var.bucket_location
   bucket_name     = var.bucket_name
