@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 using Anamnesis.GoogleCloud;
@@ -11,7 +12,10 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 
 var app = builder.Build();
 
-var serviceIdentifiers = new ServiceIdentifiers();
+var serviceIdentifiers = JsonSerializer.Serialize(
+    new ServiceIdentifiers(),
+    SourceGenerationContext.Default.ServiceIdentifiers
+);
 
 var bucket =
     Environment.GetEnvironmentVariable("ANAMNESIS_BUCKET")
