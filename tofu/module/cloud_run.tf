@@ -1,21 +1,21 @@
 locals {
-  image = var.use_ghcr ? "${var.region}-docker.pkg.dev/${data.google_project.project.project_id}/${google_artifact_registry_repository.artifact_registry.name}/drakon64/ktisis@${data.docker_registry_image.ktisis[0].sha256_digest}" : data.google_artifact_registry_docker_image.ktisis[0].self_link
+  image = var.use_ghcr ? "${var.region}-docker.pkg.dev/${data.google_project.project.project_id}/${google_artifact_registry_repository.artifact_registry.name}/drakon64/anamnesis@${data.docker_registry_image.anamnesis[0].sha256_digest}" : data.google_artifact_registry_docker_image.anamnesis[0].self_link
 }
 
 resource "google_project_service" "cloud_run" {
   service = "run.googleapis.com"
 }
 
-data "docker_registry_image" "ktisis" {
+data "docker_registry_image" "anamnesis" {
   count = var.use_ghcr ? 1 : 0
 
-  name = "ghcr.io/drakon64/ktisis:latest"
+  name = "ghcr.io/drakon64/anamnesis:latest"
 }
 
-data "google_artifact_registry_docker_image" "ktisis" {
+data "google_artifact_registry_docker_image" "anamnesis" {
   count = var.use_ghcr ? 0 : 1
 
-  image_name    = "ktisis:latest"
+  image_name    = "anamnesis:latest"
   location      = var.region
   repository_id = google_artifact_registry_repository.artifact_registry.repository_id
 }
@@ -68,10 +68,4 @@ resource "google_cloud_run_v2_service" "service" {
   }
 
   depends_on = [google_project_service.cloud_run]
-}
-
-resource "google_cloud_run_v2_service_iam_member" "anamnesis" {
-  member = "allUsers"
-  name   = google_cloud_run_v2_service.service.name
-  role   = "roles/run.invoker"
 }
