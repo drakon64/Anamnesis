@@ -38,6 +38,9 @@ internal static partial class GoogleCloud
 
     internal sealed class Item
     {
+        [JsonPropertyName("contentType")]
+        public required string ContentType { get; init; }
+
         [JsonPropertyName("name")]
         public required string Name { get; init; }
 
