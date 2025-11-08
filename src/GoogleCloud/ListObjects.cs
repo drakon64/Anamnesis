@@ -42,6 +42,6 @@ internal static partial class GoogleCloud
         public required string Name { get; init; }
 
         [JsonPropertyName("metadata")]
-        public required Dictionary<string, string> Metadata { get; init; }
+        public Dictionary<string, string>? Metadata { get; init; }
     }
 }
