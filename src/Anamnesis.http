@@ -9,8 +9,3 @@ GET {{Anamnesis_HostAddress}}/namespace/name/system/versions
 Accept: application/json
 
 ###
-
-GET {{Anamnesis_HostAddress}}/todos/1
-Accept: application/json
-
-###
