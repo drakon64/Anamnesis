@@ -13,7 +13,7 @@ internal static partial class GoogleCloud
         using var request = new HttpRequestMessage();
         request.Headers.Add("Authorization", await GetAccessToken());
         request.RequestUri = new Uri(
-            $"https://storage.googleapis.com/storage/v1/b/{bucket}/o{queryString}"
+            $"https://storage.googleapis.com/storage/v1/b/{bucket}/o{queryString.Value}"
         );
 
         using var response = await HttpClient.SendAsync(request);
