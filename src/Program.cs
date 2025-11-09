@@ -28,7 +28,7 @@ app.MapGet(
         var versions = (
             from item in await GoogleCloud.ListObjects(
                 bucket,
-                $"{registryNamespace}/{name}/{system}"
+                $"{registryNamespace}/modules/{name}/{system}/"
             )
             where item.ContentType == "application/zip"
             select new ModuleVersion
