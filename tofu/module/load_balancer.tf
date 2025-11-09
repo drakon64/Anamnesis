@@ -18,13 +18,11 @@ module "lb-http" {
         enable = false
       }
 
-      # security_policy = module.cloud_armor.policy.id
-
-      serverless_neg_backends = [{
-        region = var.region
+      serverless_neg_backends = [for region in var.regions : {
+        region = region
 
         service = {
-          name = google_cloud_run_v2_service.service.name
+          name = google_cloud_run_v2_service.service[region].name
         }
 
         type = "cloud-run"

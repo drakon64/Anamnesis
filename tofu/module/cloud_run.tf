@@ -1,5 +1,5 @@
 locals {
-  image = var.use_ghcr ? "${var.region}-docker.pkg.dev/${data.google_project.project.project_id}/${google_artifact_registry_repository.artifact_registry.name}/drakon64/anamnesis@${data.docker_registry_image.anamnesis[0].sha256_digest}" : data.google_artifact_registry_docker_image.anamnesis[0].self_link
+  image = var.use_ghcr ? "${var.artifact_registry_region}-docker.pkg.dev/${data.google_project.project.project_id}/${google_artifact_registry_repository.artifact_registry.name}/drakon64/anamnesis@${data.docker_registry_image.anamnesis[0].sha256_digest}" : data.google_artifact_registry_docker_image.anamnesis[0].self_link
 }
 
 resource "google_project_service" "cloud_run" {
@@ -16,12 +16,14 @@ data "google_artifact_registry_docker_image" "anamnesis" {
   count = var.use_ghcr ? 0 : 1
 
   image_name    = "anamnesis:latest"
-  location      = var.region
+  location      = var.artifact_registry_region
   repository_id = google_artifact_registry_repository.artifact_registry.repository_id
 }
 
 resource "google_cloud_run_v2_service" "service" {
-  location = var.region
+  for_each = var.regions
+
+  location = each.value
   name     = "anamnesis"
 
   default_uri_disabled = true

@@ -1,3 +1,7 @@
+variable "artifact_registry_region" {
+  type = string
+}
+
 variable "bucket_location" {
   type = string
 }
@@ -14,8 +18,8 @@ variable "project" {
   type = string
 }
 
-variable "region" {
-  type = string
+variable "regions" {
+  type = set(string)
 }
 
 variable "state_bucket" {
