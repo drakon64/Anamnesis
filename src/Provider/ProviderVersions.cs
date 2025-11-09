@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Anamnesis;
+namespace Anamnesis.Provider;
 
 internal sealed class ProviderVersions
 {

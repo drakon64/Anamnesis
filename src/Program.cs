@@ -1,7 +1,8 @@
 using System.Text.Json.Serialization;
 
-using Anamnesis;
 using Anamnesis.GoogleCloud;
+using Anamnesis.Module;
+using Anamnesis.Provider;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 
@@ -63,6 +64,7 @@ internal sealed class RemoteServiceDiscovery
 [JsonSerializable(typeof(RemoteServiceDiscovery))]
 [JsonSerializable(typeof(ModuleVersions))]
 [JsonSerializable(typeof(ProviderVersions))]
+[JsonSerializable(typeof(ProviderPackage))]
 [JsonSerializable(typeof(AccessTokenResponse))]
 [JsonSerializable(typeof(ListObjectsResponse))]
 internal partial class SourceGenerationContext : JsonSerializerContext;

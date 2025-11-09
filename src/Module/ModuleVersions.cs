@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Anamnesis;
+namespace Anamnesis.Module;
 
 internal sealed class ModuleVersions
 {
