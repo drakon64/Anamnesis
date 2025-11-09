@@ -26,13 +26,13 @@ internal static partial class GoogleCloud
 
         return $"{token!.TokenType} {token.AccessToken}";
     }
+}
 
-    internal sealed class AccessTokenResponse
-    {
-        [JsonPropertyName("access_token")]
-        public required string AccessToken { get; init; }
+internal sealed class AccessTokenResponse
+{
+    [JsonPropertyName("access_token")]
+    public required string AccessToken { get; init; }
 
-        [JsonPropertyName("token_type")]
-        public required string TokenType { get; init; }
-    }
+    [JsonPropertyName("token_type")]
+    public required string TokenType { get; init; }
 }

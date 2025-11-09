@@ -63,6 +63,6 @@ internal sealed class RemoteServiceDiscovery
 [JsonSerializable(typeof(RemoteServiceDiscovery))]
 [JsonSerializable(typeof(ModuleVersions))]
 [JsonSerializable(typeof(ProviderVersions))]
-[JsonSerializable(typeof(GoogleCloud.AccessTokenResponse))]
-[JsonSerializable(typeof(GoogleCloud.ListObjectsResponse))]
+[JsonSerializable(typeof(AccessTokenResponse))]
+[JsonSerializable(typeof(ListObjectsResponse))]
 internal partial class SourceGenerationContext : JsonSerializerContext;
