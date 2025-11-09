@@ -44,7 +44,7 @@ app.MapGet(
     (HttpContext context, string registryNamespace, string name, string system, string version) =>
     {
         context.Response.Headers["X-Terraform-Get"] =
-            $"gcs::https://www.googleapis.com/storage/v1/{bucket}/{registryNamespace}/{name}/{system}/{version}.zip";
+            $"gcs::https://www.googleapis.com/storage/v1/{bucket}/{registryNamespace}/modules/{name}/{system}/{version}.zip";
 
         return Results.NoContent();
     }
