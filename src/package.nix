@@ -19,8 +19,10 @@ buildDotnetModule (finalAttrs: {
     fileset = fs.difference (./.) (
       fs.unions [
         ./appsettings.Development.json
+        ./Anamnesis.http
         (lib.fileset.maybeMissing ./bin)
         (lib.fileset.maybeMissing ./config)
+        ./.gitignore
         (lib.fileset.maybeMissing ./obj)
 
         ./package.nix
