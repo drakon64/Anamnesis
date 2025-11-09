@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 
+using Anamnesis;
 using Anamnesis.GoogleCloud;
 
 var builder = WebApplication.CreateSlimBuilder(args);
@@ -35,7 +36,7 @@ app.MapGet(
             }
         ).ToArray();
 
-        return new Versions { Modules = [new Module { Versions = versions }] };
+        return new ModuleVersions { Modules = [new Module { Versions = versions }] };
     }
 );
 
@@ -59,26 +60,9 @@ internal sealed class RemoteServiceDiscovery
     public readonly string ModulesV1 = "/terraform/modules/v1/";
 }
 
-internal sealed class Versions
-{
-    [JsonPropertyName("modules")]
-    public required Module[] Modules { get; init; }
-}
-
-internal sealed class Module
-{
-    [JsonPropertyName("versions")]
-    public required ModuleVersion[] Versions { get; init; }
-}
-
-internal sealed class ModuleVersion
-{
-    [JsonPropertyName("version")]
-    public required string Version { get; init; }
-}
-
 [JsonSerializable(typeof(RemoteServiceDiscovery))]
-[JsonSerializable(typeof(Versions))]
+[JsonSerializable(typeof(ModuleVersions))]
+[JsonSerializable(typeof(ProviderVersions))]
 [JsonSerializable(typeof(GoogleCloud.AccessTokenResponse))]
 [JsonSerializable(typeof(GoogleCloud.ListObjectsResponse))]
 internal partial class SourceGenerationContext : JsonSerializerContext;
