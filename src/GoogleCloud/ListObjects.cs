@@ -6,14 +6,10 @@ internal static partial class GoogleCloud
 {
     internal static async Task<Item[]> ListObjects(string bucket, string prefix)
     {
-        var queryString = QueryString.Empty;
-        queryString.Add("delimiter", "/");
-        queryString.Add("prefix", prefix);
-
         using var request = new HttpRequestMessage();
         request.Headers.Add("Authorization", await GetAccessToken());
         request.RequestUri = new Uri(
-            $"https://storage.googleapis.com/storage/v1/b/{bucket}/o{queryString.Value}"
+            $"https://storage.googleapis.com/storage/v1/b/{bucket}/o?delimiter=/&prefix={prefix}"
         );
 
         using var response = await HttpClient.SendAsync(request);
