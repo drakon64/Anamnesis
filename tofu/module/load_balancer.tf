@@ -5,7 +5,8 @@ resource "google_project_service" "compute" {
 resource "google_compute_ssl_policy" "tls" {
   name = "anamnesis"
 
-  profile = "RESTRICTED"
+  min_tls_version = "TLS_1_2"
+  profile         = "RESTRICTED"
 }
 
 module "lb-http" {
