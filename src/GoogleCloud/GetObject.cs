@@ -15,8 +15,6 @@ internal static partial class GoogleCloud
         if (!response.IsSuccessStatusCode)
             throw new Exception();
 
-        return (
-            await response.Content.ReadFromJsonAsync(SourceGenerationContext.Default.Object)
-        )!;
+        return (await response.Content.ReadFromJsonAsync(SourceGenerationContext.Default.Object))!;
     }
 }
