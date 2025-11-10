@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 using Anamnesis.GoogleCloud;
@@ -52,6 +53,34 @@ app.MapGet(
     }
 );
 
+app.MapGet(
+    remoteServiceDiscovery.ProvidersV1 + "{registryNamespace}/{type}/versions",
+    async (string registryNamespace, string type) =>
+    {
+        var versions = (
+            from item in await GoogleCloud.ListObjects(
+                bucket,
+                $"{registryNamespace}/providers/{type}/"
+            )
+            where item.ContentType == "application/zip"
+            select new ProviderVersion
+            {
+                Version = item.Name[(item.Name.LastIndexOf('/') + 1)..item.Name.LastIndexOf('.')],
+                Protocols = JsonSerializer.Deserialize(
+                    item.Metadata["Protocols"],
+                    SourceGenerationContext.Default.StringArray
+                ),
+                Platforms = JsonSerializer.Deserialize(
+                    item.Metadata["Platforms"],
+                    SourceGenerationContext.Default.PlatformArray
+                ),
+            }
+        ).ToArray();
+
+        return new ProviderVersions { Versions = versions };
+    }
+);
+
 app.Run($"http://*:{Environment.GetEnvironmentVariable("PORT")}");
 
 internal sealed class RemoteServiceDiscovery
@@ -59,6 +88,10 @@ internal sealed class RemoteServiceDiscovery
     [JsonInclude]
     [JsonPropertyName("modules.v1")]
     public readonly string ModulesV1 = "/terraform/modules/v1/";
+
+    [JsonInclude]
+    [JsonPropertyName("providers.v1")]
+    public readonly string ProvidersV1 = "/terraform/providers/v1/";
 }
 
 [JsonSerializable(typeof(RemoteServiceDiscovery))]
