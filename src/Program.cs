@@ -69,11 +69,11 @@ app.MapGet(
                     (storageObject.Name.LastIndexOf('/') + 1)..storageObject.Name.LastIndexOf('.')
                 ],
                 Protocols = JsonSerializer.Deserialize(
-                    storageObject.Metadata["Protocols"],
+                    storageObject.Metadata.Protocols,
                     SourceGenerationContext.Default.StringArray
                 ),
                 Platforms = JsonSerializer.Deserialize(
-                    storageObject.Metadata["Platforms"],
+                    storageObject.Metadata.Platforms,
                     SourceGenerationContext.Default.PlatformArray
                 ),
             }
@@ -100,19 +100,19 @@ app.MapGet(
         return new ProviderPackage
         {
             Protocols = JsonSerializer.Deserialize(
-                storageObject.Metadata["Protocols"],
+                storageObject.Metadata.Protocols,
                 SourceGenerationContext.Default.StringArray
             ),
-            OperatingSystem = storageObject.Metadata["OS"],
-            Arch = storageObject.Metadata["Arch"],
+            Os = storageObject.Metadata.Os,
+            Arch = storageObject.Metadata.Arch,
             Filename = fileName,
             DownloadUrl = $"{url}{fileName}",
             ShasumsUrl = $"{url}{registryNamespace}_{type}_{version}_{os}_{arch}_SHA256SUMS",
             ShasumsSignatureUrl =
                 $"{url}{registryNamespace}_{type}_{version}_{os}_{arch}_SHA256SUMS.sig",
-            Shasum = storageObject.Metadata["Shasum"],
+            Shasum = storageObject.Metadata.Shasum,
             SigningKeys = JsonSerializer.Deserialize(
-                storageObject.Metadata["SigningKeys"],
+                storageObject.Metadata.SigningKeys,
                 SourceGenerationContext.Default.SigningKeys
             ),
         };

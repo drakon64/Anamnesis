@@ -8,7 +8,7 @@ internal sealed class ProviderPackage
     public required string[] Protocols { get; init; }
 
     [JsonPropertyName("os")]
-    public required string OperatingSystem { get; init; }
+    public required string Os { get; init; }
 
     [JsonPropertyName("arch")]
     public required string Arch { get; init; }

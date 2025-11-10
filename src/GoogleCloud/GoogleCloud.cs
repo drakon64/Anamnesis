@@ -46,5 +46,26 @@ internal sealed class Object
     public required string Name { get; init; }
 
     [JsonPropertyName("metadata")]
-    public Dictionary<string, string>? Metadata { get; init; }
+    public Metadata? Metadata { get; init; }
+}
+
+internal sealed class Metadata
+{
+    [JsonPropertyName("protocols")]
+    public required string Protocols { get; init; }
+
+    [JsonPropertyName("platforms")]
+    public required string Platforms { get; init; }
+
+    [JsonPropertyName("os")]
+    public required string Os { get; init; }
+
+    [JsonPropertyName("arch")]
+    public required string Arch { get; init; }
+
+    [JsonPropertyName("shasum")]
+    public required string Shasum { get; init; }
+
+    [JsonPropertyName("signing_keys")]
+    public required string SigningKeys { get; init; }
 }
