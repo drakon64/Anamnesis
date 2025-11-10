@@ -16,6 +16,8 @@ resource "google_artifact_registry_repository" "artifact_registry" {
     }
   }
 
+  location = var.artifact_registry_location
+
   mode = var.use_ghcr ? "REMOTE_REPOSITORY" : "STANDARD_REPOSITORY"
 
   dynamic "remote_repository_config" {

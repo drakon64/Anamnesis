@@ -1,5 +1,5 @@
 locals {
-  image = var.use_ghcr ? "${var.artifact_registry_region}-docker.pkg.dev/${data.google_project.project.project_id}/${google_artifact_registry_repository.artifact_registry.name}/drakon64/anamnesis@${data.docker_registry_image.anamnesis[0].sha256_digest}" : data.google_artifact_registry_docker_image.anamnesis[0].self_link
+  image = var.use_ghcr ? "${var.artifact_registry_location}-docker.pkg.dev/${data.google_project.project.project_id}/${google_artifact_registry_repository.artifact_registry.name}/drakon64/anamnesis@${data.docker_registry_image.anamnesis[0].sha256_digest}" : data.google_artifact_registry_docker_image.anamnesis[0].self_link
 }
 
 resource "google_project_service" "cloud_run" {
@@ -16,7 +16,7 @@ data "google_artifact_registry_docker_image" "anamnesis" {
   count = var.use_ghcr ? 0 : 1
 
   image_name    = "anamnesis:latest"
-  location      = var.artifact_registry_region
+  location      = var.artifact_registry_location
   repository_id = google_artifact_registry_repository.artifact_registry.repository_id
 }
 

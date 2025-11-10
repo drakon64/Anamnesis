@@ -1,4 +1,4 @@
-variable "artifact_registry_region" {
+variable "artifact_registry_location" {
   type = string
 }
 
