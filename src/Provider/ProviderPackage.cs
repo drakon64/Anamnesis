@@ -34,7 +34,7 @@ internal sealed class ProviderPackage
 
 internal sealed class SigningKeys
 {
-    [JsonPropertyName("gpg_public required_keys")]
+    [JsonPropertyName("gpg_public_keys")]
     public required GpgPublicKey[] GpgPublicKeys { get; init; }
 }
 
