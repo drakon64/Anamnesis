@@ -4,7 +4,7 @@ namespace Anamnesis.GoogleCloud;
 
 internal static partial class GoogleCloud
 {
-    internal static async Task<Item[]> ListObjects(string bucket, string prefix)
+    internal static async Task<Object[]> ListObjects(string bucket, string prefix)
     {
         using var request = new HttpRequestMessage();
         request.Headers.Add("Authorization", await GetAccessToken());
@@ -30,17 +30,5 @@ internal static partial class GoogleCloud
 internal sealed class ListObjectsResponse
 {
     [JsonPropertyName("items")]
-    public required Item[] Items { get; init; }
-}
-
-internal sealed class Item
-{
-    [JsonPropertyName("contentType")]
-    public required string ContentType { get; init; }
-
-    [JsonPropertyName("name")]
-    public required string Name { get; init; }
-
-    [JsonPropertyName("metadata")]
-    public Dictionary<string, string>? Metadata { get; init; }
+    public required Object[] Items { get; init; }
 }
