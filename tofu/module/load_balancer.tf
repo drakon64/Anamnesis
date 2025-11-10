@@ -2,6 +2,12 @@ resource "google_project_service" "compute" {
   service = "compute.googleapis.com"
 }
 
+resource "google_compute_ssl_policy" "tls" {
+  name = "anamnesis"
+
+  profile = "RESTRICTED"
+}
+
 module "lb-http" {
   source  = "terraform-google-modules/lb-http/google//modules/serverless_negs"
   version = "14.0.0"
@@ -36,6 +42,7 @@ module "lb-http" {
   load_balancing_scheme           = "EXTERNAL_MANAGED"
   managed_ssl_certificate_domains = [var.domain]
   ssl                             = true
+  ssl_policy                      = google_compute_ssl_policy.tls.self_link
 
   depends_on = [google_project_service.compute]
 }
