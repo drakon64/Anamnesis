@@ -16,6 +16,8 @@ module "lb-http" {
   name    = "anamnesis"
   project = data.google_project.project.project_id
 
+  security_policy = module.cloud_armor.policy.id
+
   backends = {
     default = {
       enable_cdn = false
