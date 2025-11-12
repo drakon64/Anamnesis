@@ -15,8 +15,4 @@ provider "docker" {
   disable_docker_daemon_check = true
 }
 
-provider "google" {
-  project = var.project
-}
-
 data "google_project" "project" {}
