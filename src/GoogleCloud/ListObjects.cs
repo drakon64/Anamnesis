@@ -15,7 +15,7 @@ internal static partial class GoogleCloud
         using var response = await HttpClient.SendAsync(request);
 
         if (!response.IsSuccessStatusCode)
-            throw new Exception();
+            throw new Exception(await response.Content.ReadAsStringAsync());
 
         return (
             (
