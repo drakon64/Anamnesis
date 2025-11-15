@@ -12,6 +12,8 @@ builder.Services.ConfigureHttpJsonOptions(options =>
     options.SerializerOptions.TypeInfoResolverChain.Insert(0, SourceGenerationContext.Default);
 });
 
+builder.Services.AddRazorPages();
+
 var app = builder.Build();
 
 var remoteServiceDiscovery = new RemoteServiceDiscovery();
@@ -119,6 +121,8 @@ app.MapGet(
     }
 );
 
+app.MapRazorPages();
+
 app.Run($"http://*:{Environment.GetEnvironmentVariable("PORT")}");
 
 internal sealed class RemoteServiceDiscovery
@@ -138,4 +142,5 @@ internal sealed class RemoteServiceDiscovery
 [JsonSerializable(typeof(ProviderPackage))]
 [JsonSerializable(typeof(AccessTokenResponse))]
 [JsonSerializable(typeof(ListObjectsResponse))]
+[JsonSerializable(typeof(ListFoldersResponse))]
 internal partial class SourceGenerationContext : JsonSerializerContext;

@@ -2,6 +2,10 @@ resource "google_storage_bucket" "bucket" {
   location = var.bucket_location
   name     = var.bucket_name
 
+  hierarchical_namespace {
+    enabled = true
+  }
+
   public_access_prevention    = "enforced"
   uniform_bucket_level_access = true
 }

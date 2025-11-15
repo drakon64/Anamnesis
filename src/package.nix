@@ -33,11 +33,9 @@ buildDotnetModule (finalAttrs: {
   projectFile = "Anamnesis.csproj";
 
   dotnet-sdk = dotnetCorePackages.sdk_10_0;
-  dotnet-runtime = null;
+  dotnet-runtime = dotnetCorePackages.aspnetcore_10_0;
 
   executables = [ "Anamnesis" ];
-
-  selfContainedBuild = true;
 
   meta = {
     license = lib.licenses.eupl12;

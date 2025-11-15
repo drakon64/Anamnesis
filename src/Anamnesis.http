@@ -1,4 +1,4 @@
-@Anamnesis_HostAddress = http://localhost:5000
+@Anamnesis_HostAddress = http://localhost:80
 
 GET {{Anamnesis_HostAddress}}/.well-known/terraform.json
 Accept: application/json

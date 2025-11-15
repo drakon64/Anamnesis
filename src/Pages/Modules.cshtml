@@ -1,0 +1,12 @@
+@page "/{ns}/modules"
+@namespace Anamnesis.Pages
+@model ModulesModel
+<!DOCTYPE html>
+<head>
+    <title>Modules - @Model.Namespace - Anamnesis</title>
+</head>
+<h1>@Model.Namespace - Modules</h1>
+@foreach(var module in Model.Modules)
+{
+    <h2>@module</h2>
+}
