@@ -1,1 +1,107 @@
-[]
+[
+  {
+    "pname": "Google.Api.CommonProtos",
+    "version": "2.17.0",
+    "hash": "sha256-OwmbvR8rhoER0zlESUkNhfeRRHNUr7oZZtFhU2oY1q8="
+  },
+  {
+    "pname": "Google.Api.Gax",
+    "version": "4.12.1",
+    "hash": "sha256-U8K+B3QFmWjI6zoF7Z7EPk22dsJ8YcZbbAb1Gaywjog="
+  },
+  {
+    "pname": "Google.Api.Gax.Grpc",
+    "version": "4.12.1",
+    "hash": "sha256-0H13wclStD6LoGHXMjT4wd+SYKuOZsWRiMWEle74EAk="
+  },
+  {
+    "pname": "Google.Apis",
+    "version": "1.72.0",
+    "hash": "sha256-VS9W6ElipbN5WR/Sq5Q3dBMgoROXOzBAoUk1Pht0YQw="
+  },
+  {
+    "pname": "Google.Apis.Auth",
+    "version": "1.69.0",
+    "hash": "sha256-T6n3hc+KpgHNqQQeJLOmgHQWkjBvnhIob5giHabREV8="
+  },
+  {
+    "pname": "Google.Apis.Auth",
+    "version": "1.72.0",
+    "hash": "sha256-lRd8kk2IX/8j4GZlQeoTmwEYqa/x3fo1p2aEJOqHjME="
+  },
+  {
+    "pname": "Google.Apis.Core",
+    "version": "1.72.0",
+    "hash": "sha256-9nTQ2RO6kIWuqaP0jR5BaPSoD6mxOTd7SsfN0w3azek="
+  },
+  {
+    "pname": "Google.Cloud.Firestore",
+    "version": "3.12.0",
+    "hash": "sha256-XMK5/KrHR1laYrmzLAsJQwFp0DFdkH4KL9V9e21rcA4="
+  },
+  {
+    "pname": "Google.Cloud.Firestore.V1",
+    "version": "3.12.0",
+    "hash": "sha256-MSPu018CB5aselaUKfv1JpZNuwWHHxAHbiRoYxc3oK8="
+  },
+  {
+    "pname": "Google.Cloud.Location",
+    "version": "2.4.0",
+    "hash": "sha256-Bpn6jYpN+fnXJRt4ltW/NWYzqY7Ecrb68AMN5mPJToI="
+  },
+  {
+    "pname": "Google.LongRunning",
+    "version": "3.5.0",
+    "hash": "sha256-JpgE1sPNGeHJjiXH8T6ynVBQFGAGSZAUJr773I4Shr0="
+  },
+  {
+    "pname": "Google.Protobuf",
+    "version": "3.31.1",
+    "hash": "sha256-UEcn4H8F+zK0AjSmz1aTyyMksLxJOGNf2IROtF+DydA="
+  },
+  {
+    "pname": "Grpc.Auth",
+    "version": "2.71.0",
+    "hash": "sha256-rAPPqUeRlWuoMGhdwCrLd1UlIFfSnGP1qhg1yDG3d9c="
+  },
+  {
+    "pname": "Grpc.Core.Api",
+    "version": "2.71.0",
+    "hash": "sha256-OEA0FHDwIlegydD1+Ml5erYx4qTQnkL6NCpxq3r2InM="
+  },
+  {
+    "pname": "Grpc.Net.Client",
+    "version": "2.71.0",
+    "hash": "sha256-qswuDuRoMSkXlVOIex9KTfTagRhzfoIBCV5GO7RddoA="
+  },
+  {
+    "pname": "Grpc.Net.Common",
+    "version": "2.71.0",
+    "hash": "sha256-TEPDYKHR6b9iJtmEULjWtJZLBPIw2RO6/6HSNV1SMNI="
+  },
+  {
+    "pname": "Microsoft.Bcl.AsyncInterfaces",
+    "version": "6.0.0",
+    "hash": "sha256-49+H/iFwp+AfCICvWcqo9us4CzxApPKC37Q5Eqrw+JU="
+  },
+  {
+    "pname": "Newtonsoft.Json",
+    "version": "13.0.4",
+    "hash": "sha256-8JCB1FdAW681qXP6DFDWvycu1oPyVoxaYgpJ2pUvZSk="
+  },
+  {
+    "pname": "System.CodeDom",
+    "version": "7.0.0",
+    "hash": "sha256-7IPt39cY+0j0ZcRr/J45xPtEjnSXdUJ/5ai3ebaYQiE="
+  },
+  {
+    "pname": "System.Linq.Async",
+    "version": "6.0.3",
+    "hash": "sha256-i+2XnsOJnD7R/vCFtadp+lwrkDNAscANes2Ur0MSTl8="
+  },
+  {
+    "pname": "System.Management",
+    "version": "7.0.2",
+    "hash": "sha256-bJ21ILQfbHb8mX2wnVh7WP/Ip7gdVPIw+BamQuifTVY="
+  }
+]
