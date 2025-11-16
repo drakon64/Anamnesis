@@ -14,6 +14,10 @@ variable "domain" {
   type = string
 }
 
+variable "firestore_location" {
+  type = string
+}
+
 variable "project" {
   type = string
 }

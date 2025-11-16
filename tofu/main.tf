@@ -17,6 +17,7 @@ module "anamnesis" {
   bucket_location            = var.bucket_location
   bucket_name                = var.bucket_name
   domain                     = var.domain
+  firestore_location         = var.firestore_location
   project                    = var.project
   regions                    = var.regions
 }

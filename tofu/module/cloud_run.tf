@@ -39,6 +39,12 @@ resource "google_cloud_run_v2_service" "service" {
         value = google_storage_bucket.bucket.name
       }
 
+      env {
+        name = "ANAMNESIS_DATABASE"
+
+        value = google_firestore_database.database.id
+      }
+
       resources {
         cpu_idle = true
 
