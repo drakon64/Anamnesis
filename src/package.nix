@@ -22,8 +22,8 @@ buildDotnetModule (finalAttrs: {
         ./Anamnesis.http
         (lib.fileset.maybeMissing ./bin)
         (lib.fileset.maybeMissing ./config)
-        ./.gitignore
         (lib.fileset.maybeMissing ./obj)
+        ./.gitignore
 
         ./package.nix
       ]
@@ -31,6 +31,7 @@ buildDotnetModule (finalAttrs: {
   };
 
   projectFile = "Anamnesis.csproj";
+  nugetDeps = ./deps.json;
 
   dotnet-sdk = dotnetCorePackages.sdk_10_0;
   dotnet-runtime = dotnetCorePackages.aspnetcore_10_0;

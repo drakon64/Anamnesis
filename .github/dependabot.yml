@@ -5,6 +5,12 @@ updates:
     schedule:
       interval: daily
 
+  - package-ecosystem: nuget
+    directories:
+      - /src
+    schedule:
+      interval: daily
+
   - package-ecosystem: terraform
     directories:
       - /tofu
