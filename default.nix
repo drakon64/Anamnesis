@@ -1,4 +1,7 @@
 {
   pkgs ? import (import ./lon.nix).nixpkgs { },
 }:
-pkgs.callPackage ./src/Repository/package.nix { }
+{
+  repository = pkgs.callPackage ./src/Repository/package.nix { };
+  dashboard = pkgs.callPackage ./src/Dashboard/package.nix { };
+}

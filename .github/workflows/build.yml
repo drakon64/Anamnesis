@@ -5,14 +5,14 @@ on:
     branches:
       - main
     paths:
-      - src/**.cs
-      - src/Pages/*.cshtml
-      - src/Anamnesis.csproj
-      - src/package.nix
+      - src/**/**.cs
+      - src/**/Pages/*.cshtml
+      - src/**/*.csproj
+      - src/**/package.nix
+      - src/**/Dockerfile
       - default.nix
       - lon.nix
       - lon.lock
-      - Dockerfile
       - .github/workflows/build.yml
   workflow_dispatch:
 

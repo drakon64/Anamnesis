@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Anamnesis.Pages;
+namespace Anamnesis.Dashboard.Pages;
 
 public class IndexModel : PageModel
 {

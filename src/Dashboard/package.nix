@@ -10,7 +10,7 @@ let
   fs = lib.fileset;
 in
 buildDotnetModule (finalAttrs: {
-  pname = "anamnesis";
+  pname = "anamnesis-dashboard";
   version = builtins.readFile ../../version;
 
   src = fs.toSource {
@@ -19,7 +19,6 @@ buildDotnetModule (finalAttrs: {
     fileset = fs.difference (./.) (
       fs.unions [
         ./appsettings.Development.json
-        ./Anamnesis.http
         (lib.fileset.maybeMissing ./bin)
         (lib.fileset.maybeMissing ./config)
         (lib.fileset.maybeMissing ./obj)
@@ -30,23 +29,22 @@ buildDotnetModule (finalAttrs: {
     );
   };
 
-  projectFile = "Anamnesis.csproj";
+  projectFile = "Anamnesis.Dashboard.csproj";
+  nugetDeps = ./deps.json;
 
   dotnet-sdk = dotnetCorePackages.sdk_10_0;
-  dotnet-runtime = null;
+  dotnet-runtime = dotnetCorePackages.aspnetcore_10_0;
 
-  executables = [ "Anamnesis" ];
-
-  selfContainedBuild = true;
+  executables = [ "Anamnesis.Dashboard" ];
 
   meta = {
     license = lib.licenses.eupl12;
-    mainProgram = "Anamnesis";
+    mainProgram = "Anamnesis.Dashboard";
     maintainers = with lib.maintainers; [ drakon64 ];
   };
 
   passthru.docker = dockerTools.buildLayeredImage {
-    name = "anamnesis";
+    name = "anamnesis-dashboard";
     tag = "latest";
 
     config.Entrypoint = [ (lib.getExe finalAttrs.finalPackage) ];

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Anamnesis.GoogleCloud;
+namespace Anamnesis.Dashboard.GoogleCloud;
 
 internal static partial class GoogleCloud
 {
