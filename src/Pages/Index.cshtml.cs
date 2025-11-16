@@ -8,8 +8,6 @@ public class IndexModel : PageModel
 
     public async Task OnGet()
     {
-        Namespaces = await GoogleCloud.GoogleCloud.ListFolders(
-            Environment.GetEnvironmentVariable("ANAMNESIS_BUCKET")!
-        );
+        Namespaces = await GoogleCloud.GoogleCloud.ListFolders(Program.Bucket);
     }
 }

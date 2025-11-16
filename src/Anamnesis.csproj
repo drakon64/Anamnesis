@@ -8,7 +8,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <PublishReadyToRunComposite>true</PublishReadyToRunComposite>
-    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Google.Cloud.Firestore" Version="3.12.0" />

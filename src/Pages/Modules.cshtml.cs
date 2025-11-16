@@ -11,9 +11,6 @@ public class ModulesModel : PageModel
     {
         Namespace = ns;
 
-        Modules = await GoogleCloud.GoogleCloud.ListFolders(
-            Environment.GetEnvironmentVariable("ANAMNESIS_BUCKET")!,
-            $"{ns}/modules"
-        );
+        Modules = await GoogleCloud.GoogleCloud.ListFolders(Program.Bucket, $"{ns}/modules");
     }
 }
