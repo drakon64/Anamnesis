@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - src/**.cs
+      - src/Pages/*.cshtml
       - src/Anamnesis.csproj
       - src/package.nix
       - default.nix
