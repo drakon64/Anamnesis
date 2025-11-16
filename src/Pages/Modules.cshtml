@@ -6,7 +6,9 @@
     <title>Modules - @Model.Namespace - Anamnesis</title>
 </head>
 <h1>@Model.Namespace - Modules</h1>
-@foreach(var module in Model.Modules)
-{
-    <h2>@module</h2>
-}
+<ul>
+    @foreach(var module in Model.Modules)
+    {
+        <li>@module</li>
+    }
+</ul>

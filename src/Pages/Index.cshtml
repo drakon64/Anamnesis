@@ -5,7 +5,9 @@
     <title>Anamnesis</title>
 </head>
 <h1>Namespaces</h1>
-@foreach(var ns in await GoogleCloud.GoogleCloud.ListFolders(Environment.GetEnvironmentVariable("ANAMNESIS_BUCKET")))
-{
-    <p>@ns</p>
-}
+<ul>
+    @foreach(var ns in await GoogleCloud.GoogleCloud.ListFolders(Environment.GetEnvironmentVariable("ANAMNESIS_BUCKET")))
+    {
+        <li>@ns</li>
+    }
+</ul>
