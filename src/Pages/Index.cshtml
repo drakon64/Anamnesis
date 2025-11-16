@@ -1,13 +1,18 @@
 @page "/"
 @namespace Anamnesis.Pages
+@model IndexModel
 <!DOCTYPE html>
 <head>
     <title>Anamnesis</title>
 </head>
 <h1>Namespaces</h1>
 <ul>
-    @foreach(var ns in await GoogleCloud.GoogleCloud.ListFolders(Environment.GetEnvironmentVariable("ANAMNESIS_BUCKET")))
+    @foreach(var ns in Model.Namespaces)
     {
-        <li>@ns</li>
+        <li>@ns
+            <ul>
+                <li><a href="/@ns/modules">Modules</a></li>
+            </ul>
+        </li>
     }
 </ul>
