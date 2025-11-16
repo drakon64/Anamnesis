@@ -1,9 +1,7 @@
-using System.Text.Json;
 using System.Text.Json.Serialization;
 
 using Anamnesis.GoogleCloud;
 using Anamnesis.Module;
-using Anamnesis.Provider;
 
 namespace Anamnesis;
 
@@ -73,75 +71,6 @@ internal class Program
             }
         );
 
-        app.MapGet(
-            remoteServiceDiscovery.ProvidersV1 + "{registryNamespace}/{type}/versions",
-            async (string registryNamespace, string type) =>
-            {
-                var versions = (
-                    from storageObject in await GoogleCloud.GoogleCloud.ListObjects(
-                        Bucket,
-                        $"{registryNamespace}/providers/{type}/"
-                    )
-                    where storageObject.ContentType == "application/zip"
-                    select new ProviderVersion
-                    {
-                        Version = storageObject.Name[
-                            (
-                                storageObject.Name.LastIndexOf('/') + 1
-                            )..storageObject.Name.LastIndexOf('.')
-                        ],
-                        Protocols = JsonSerializer.Deserialize(
-                            storageObject.Metadata.Protocols,
-                            SourceGenerationContext.Default.StringArray
-                        ),
-                        Platforms = JsonSerializer.Deserialize(
-                            storageObject.Metadata.Platforms,
-                            SourceGenerationContext.Default.PlatformArray
-                        ),
-                    }
-                ).ToArray();
-
-                return new ProviderVersions { Versions = versions };
-            }
-        );
-
-        app.MapGet(
-            remoteServiceDiscovery.ProvidersV1
-                + "{registryNamespace}/{type}/{version}/download/{os}/{arch}",
-            async (string registryNamespace, string type, string version, string os, string arch) =>
-            {
-                var storageObject = await GoogleCloud.GoogleCloud.GetObject(
-                    Bucket,
-                    $"{registryNamespace}/providers/{type}/{version}/{registryNamespace}_{type}_{version}_{os}_{arch}.zip"
-                );
-
-                var fileName = storageObject.Name[(storageObject.Name.LastIndexOf('/') + 1)..];
-                var url =
-                    $"gcs::https://www.googleapis.com/storage/v1/{Bucket}/{registryNamespace}/providers/{type}/{version}/";
-
-                return new ProviderPackage
-                {
-                    Protocols = JsonSerializer.Deserialize(
-                        storageObject.Metadata.Protocols,
-                        SourceGenerationContext.Default.StringArray
-                    ),
-                    Os = storageObject.Metadata.Os,
-                    Arch = storageObject.Metadata.Arch,
-                    Filename = fileName,
-                    DownloadUrl = $"{url}{fileName}",
-                    ShasumsUrl =
-                        $"{url}{registryNamespace}_{type}_{version}_{os}_{arch}_SHA256SUMS",
-                    ShasumsSignatureUrl =
-                        $"{url}{registryNamespace}_{type}_{version}_{os}_{arch}_SHA256SUMS.sig",
-                    Shasum = storageObject.Metadata.Shasum,
-                    SigningKeys = JsonSerializer.Deserialize(
-                        storageObject.Metadata.SigningKeys,
-                        SourceGenerationContext.Default.SigningKeys
-                    ),
-                };
-            }
-        );
-
         app.MapRazorPages();
 
         app.Run($"http://*:{Environment.GetEnvironmentVariable("PORT")}");
@@ -153,16 +82,10 @@ internal sealed class RemoteServiceDiscovery
     [JsonInclude]
     [JsonPropertyName("modules.v1")]
     public readonly string ModulesV1 = "/terraform/modules/v1/";
-
-    [JsonInclude]
-    [JsonPropertyName("providers.v1")]
-    public readonly string ProvidersV1 = "/terraform/providers/v1/";
 }
 
 [JsonSerializable(typeof(RemoteServiceDiscovery))]
 [JsonSerializable(typeof(ModuleVersions))]
-[JsonSerializable(typeof(ProviderVersions))]
-[JsonSerializable(typeof(ProviderPackage))]
 [JsonSerializable(typeof(AccessTokenResponse))]
 [JsonSerializable(typeof(ListObjectsResponse))]
 [JsonSerializable(typeof(ListFoldersResponse))]
