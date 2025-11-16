@@ -51,7 +51,7 @@ internal static partial class GoogleCloud
                     )
                 )!
             ).Items
-            where folder.Name != prefix
+            where folder.Name != queryPrefix
             select folder.Name.Replace(prefix, "").Trim('/')
         ).ToArray();
     }
