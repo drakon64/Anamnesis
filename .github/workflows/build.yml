@@ -38,14 +38,18 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Build
-        run: cachix watch-exec drakon64 -- nix-build -A docker
+        run: cachix watch-exec drakon64 -- nix-build -A repository.docker -A dashboard.docker
 
       - name: Create Cachix pins
         run: |
-          cachix pin drakon64 anamnesis "$(nix eval --expr 'import ./. {}' --raw --impure)" --keep-revisions 1
-          cachix pin drakon64 anamnesis-docker "$(nix eval --expr '(import ./. {}).docker' --raw --impure)" --keep-revisions 1
+          cachix pin drakon64 anamnesis "$(nix eval --expr '(import ./. {}).repository' --raw --impure)" --keep-revisions 1
+          cachix pin drakon64 anamnesis-docker "$(nix eval --expr '(import ./. {}).repository.docker' --raw --impure)" --keep-revisions 1
+          cachix pin drakon64 anamnesis "$(nix eval --expr '(import ./. {}).dashboard' --raw --impure)" --keep-revisions 1
+          cachix pin drakon64 anamnesis-docker "$(nix eval --expr '(import ./. {}).dashboard.docker' --raw --impure)" --keep-revisions 1
 
-      - run: docker load < result
+      - run: |
+          docker load < result
+          docker load < result-2
 
       - name: Login to GitHub Packages
         uses: docker/login-action@v3
@@ -54,11 +58,20 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload to GitHub Packages
+      - name: Upload Repository to GitHub Packages
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: src/Repository
           push: true
           tags: ghcr.io/drakon64/anamnesis:latest
+        env:
+          SOURCE_DATE_EPOCH: 0
+
+      - name: Upload Dashboard to GitHub Packages
+        uses: docker/build-push-action@v6
+        with:
+          context: src/Dashboard
+          push: true
+          tags: ghcr.io/drakon64/anamnesis-dashboard:latest
         env:
           SOURCE_DATE_EPOCH: 0
