@@ -11,7 +11,7 @@ let
 in
 buildDotnetModule (finalAttrs: {
   pname = "anamnesis";
-  version = builtins.readFile ../version;
+  version = builtins.readFile ../../version;
 
   src = fs.toSource {
     root = ./.;
