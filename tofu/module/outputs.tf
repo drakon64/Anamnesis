@@ -10,5 +10,8 @@ output "load_balancer_ips" {
 }
 
 output "services" {
-  value = toset([for service in google_cloud_run_v2_service.service : service.id])
+  value = {
+    repository : [for service in google_cloud_run_v2_service.repository : service.id]
+    dashboard : [for service in google_cloud_run_v2_service.dashboard : service.id]
+  }
 }

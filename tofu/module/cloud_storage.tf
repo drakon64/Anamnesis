@@ -11,7 +11,12 @@ resource "google_storage_bucket" "bucket" {
 }
 
 resource "google_storage_bucket_iam_member" "anamnesis" {
+  for_each = toset([
+    google_service_account.repository.member,
+    google_service_account.dashboard.member,
+  ])
+
   bucket = google_storage_bucket.bucket.name
-  member = google_service_account.anamnesis.member
+  member = google_service_account.repository.member
   role   = "roles/storage.objectViewer"
 }
