@@ -51,6 +51,9 @@ public sealed class Module
 
     [FirestoreProperty("summary")]
     public required string Summary { get; init; }
+    
+    [FirestoreProperty("readme")]
+    public required string Readme { get; init; }
 
     [FirestoreProperty("latest")]
     public required bool Latest { get; init; }
