@@ -8,12 +8,15 @@
 <p><a href="/">Home</a></p>
 <h1>@Model.Namespace - Modules</h1>
 <table>
+    <thead>
     <tr>
         <th>Name</th>
         <th>System</th>
         <th>Version</th>
         <th>Summary</th>
     </tr>
+    </thead>
+    <tbody>
     @foreach (var module in Model.Modules)
     {
         <tr>
@@ -23,4 +26,5 @@
             <td>@module.Summary</td>
         </tr>
     }
+    </tbody>
 </table>
