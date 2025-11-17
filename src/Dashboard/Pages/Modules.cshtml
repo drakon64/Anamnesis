@@ -7,9 +7,20 @@
 </head>
 <p><a href="/">Home</a></p>
 <h1>@Model.Namespace - Modules</h1>
-<ul>
-    @foreach(var module in Model.Modules)
-    {
-        <li>@module</li>
-    }
-</ul>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>System</th>
+        <th>Version</th>
+        <th>Summary</th>
+    </tr>
+    <tr>
+        @foreach (var module in Model.Modules)
+        {
+            <td>@module.Name</td>
+            <td>@module.System</td>
+            <td>@module.Version</td>
+            <td>@module.Summary</td>
+        }
+    </tr>
+</table>
