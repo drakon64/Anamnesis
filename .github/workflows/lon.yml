@@ -33,6 +33,7 @@ jobs:
         run: |
           echo "CURRENT_REPOSITORY_HASH=$(nix eval --expr '(import ./. {}).repository.docker' --raw --impure)" >> "$GITHUB_ENV"
           echo "CURRENT_DASHBOARD_HASH=$(nix eval --expr '(import ./. {}).dashboard.docker' --raw --impure)" >> "$GITHUB_ENV"
+          echo "CURRENT_CLIENT_HASH=$(nix eval --expr '(import ./. {}).client' --raw --impure)" >> "$GITHUB_ENV"
           echo "CURRENT_SHELL_HASH=$(nix eval --expr 'import ./shell.nix {}' --raw --impure)" >> "$GITHUB_ENV"
 
       - name: Update Lon lockfile
@@ -42,6 +43,7 @@ jobs:
         run: |
           echo "NEW_REPOSITORY_HASH=$(nix-build -A repository.docker)" >> "$GITHUB_ENV"
           echo "NEW_DASHBOARD_HASH=$(nix-build -A dashboard.docker)" >> "$GITHUB_ENV"
+          echo "NEW_CLIENT_HASH=$(nix-build -A client)" >> "$GITHUB_ENV"
           echo "NEW_SHELL_HASH=$(nix eval --expr 'import ./shell.nix {}' --raw --impure)" >> "$GITHUB_ENV"
 
       - name: Open pull request
@@ -51,4 +53,4 @@ jobs:
         env:
           LON_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LON_LABELS: "lon,bot"
-        if: ${{ env.NEW_REPOSITORY_HASH != env.CURRENT_REPOSITORY_HASH || env.NEW_DASHBOARD_HASH != env.CURRENT_DASHBOARD_HASH || env.NEW_SHELL_HASH != env.CURRENT_SHELL_HASH }}
+        if: ${{ env.NEW_REPOSITORY_HASH != env.CURRENT_REPOSITORY_HASH || env.NEW_DASHBOARD_HASH != env.CURRENT_DASHBOARD_HASH || env.NEW_CLIENT_HASH != env.CURRENT_CLIENT_HASH || env.NEW_SHELL_HASH != env.CURRENT_SHELL_HASH }}

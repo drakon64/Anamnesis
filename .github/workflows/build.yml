@@ -8,9 +8,9 @@ on:
       - src/**/**.cs
       - src/**/*.csproj
       - src/**/package.nix
+      - src/**/deps.json
       - src/**/Dockerfile
       - src/Dashboard/Pages/*.cshtml
-      - src/Dashboard/deps.json
       - default.nix
       - lon.nix
       - lon.lock

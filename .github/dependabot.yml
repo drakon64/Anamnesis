@@ -7,8 +7,8 @@ updates:
 
   - package-ecosystem: nuget
     directories:
-      - /src/Repository
       - /src/Dashboard
+      - /src/Client
     schedule:
       interval: daily
 
