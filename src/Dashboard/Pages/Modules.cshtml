@@ -14,13 +14,13 @@
         <th>Version</th>
         <th>Summary</th>
     </tr>
-    <tr>
-        @foreach (var module in Model.Modules)
-        {
+    @foreach (var module in Model.Modules)
+    {
+        <tr>
             <td>@module.Name</td>
             <td>@module.System</td>
             <td>@module.Version</td>
             <td>@module.Summary</td>
-        }
-    </tr>
+        </tr>
+    }
 </table>
