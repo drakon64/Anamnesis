@@ -39,14 +39,15 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Build
-        run: cachix watch-exec drakon64 -- nix-build -A repository.docker -A dashboard.docker
+        run: cachix watch-exec drakon64 -- nix-build -A repository.docker -A dashboard.docker -A client
 
       - name: Create Cachix pins
         run: |
           cachix pin drakon64 anamnesis "$(nix eval --expr '(import ./. {}).repository' --raw --impure)" --keep-revisions 1
           cachix pin drakon64 anamnesis-docker "$(nix eval --expr '(import ./. {}).repository.docker' --raw --impure)" --keep-revisions 1
-          cachix pin drakon64 anamnesis "$(nix eval --expr '(import ./. {}).dashboard' --raw --impure)" --keep-revisions 1
-          cachix pin drakon64 anamnesis-docker "$(nix eval --expr '(import ./. {}).dashboard.docker' --raw --impure)" --keep-revisions 1
+          cachix pin drakon64 anamnesis-dashboard "$(nix eval --expr '(import ./. {}).dashboard' --raw --impure)" --keep-revisions 1
+          cachix pin drakon64 anamnesis-dashboard-docker "$(nix eval --expr '(import ./. {}).dashboard.docker' --raw --impure)" --keep-revisions 1
+          cachix pin drakon64 anamnesis-client "$(nix eval --expr '(import ./. {}).client' --raw --impure)" --keep-revisions 1
 
       - run: |
           docker load < result
