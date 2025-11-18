@@ -17,6 +17,6 @@ resource "google_storage_bucket_iam_member" "anamnesis" {
   ])
 
   bucket = google_storage_bucket.bucket.name
-  member = google_service_account.repository.member
+  member = each.value
   role   = "roles/storage.objectViewer"
 }
