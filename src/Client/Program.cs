@@ -2,12 +2,12 @@
 
 var directoryArgument = new Argument<DirectoryInfo>("directory")
 {
-    Description = "The directory to upload as a module"
+    Description = "The directory to upload as a module",
 };
 
 var latestOption = new Option<bool>("--no-latest")
 {
-    Description = "Don't mark the uploaded module as the latest"
+    Description = "Don't mark the uploaded module as the latest",
 };
 
 var rootCommand = new RootCommand("Anamnesis registry client");
