@@ -71,6 +71,10 @@ module "lb-http" {
         enable = false
       }
 
+      iap_config = {
+        enable = true
+      }
+
       serverless_neg_backends = [for region in var.regions : {
         region = region
 

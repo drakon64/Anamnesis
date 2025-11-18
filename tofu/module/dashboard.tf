@@ -74,3 +74,11 @@ resource "google_cloud_run_v2_service" "dashboard" {
 
   depends_on = [google_project_service.cloud_run]
 }
+
+resource "google_cloud_run_v2_service_iam_member" "iap" {
+  for_each = var.regions
+  
+  member = "serviceAccount:service-${data.google_project.project.number}@gcp-sa-iap.iam.gserviceaccount.com"
+  name   = google_cloud_run_v2_service.dashboard[each.value].id
+  role   = "roles/run.invoker"
+}
