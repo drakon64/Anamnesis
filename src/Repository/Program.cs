@@ -4,6 +4,12 @@ using Anamnesis.GoogleCloud;
 using Anamnesis.Module;
 
 var builder = WebApplication.CreateSlimBuilder();
+
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.TypeInfoResolverChain.Insert(0, SourceGenerationContext.Default);
+});
+
 var app = builder.Build();
 
 var remoteServiceDiscovery = new RemoteServiceDiscovery();
