@@ -49,6 +49,9 @@ public sealed class Module
     [FirestoreProperty("version")]
     public required string Version { get; init; }
 
+    [FirestoreProperty("source")]
+    public required string Source { get; init; }
+
     [FirestoreProperty("summary")]
     public required string Summary { get; init; }
 

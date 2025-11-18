@@ -1,0 +1,27 @@
+@page "/{ns}/modules/{name}/{system}/{version}"
+@namespace Anamnesis.Dashboard.Pages
+@model ModuleModel
+<!DOCTYPE html>
+<head>
+    <title>@Model.Name/@Model.System - @Model.Version - Modules - @Model.Namespace - Anamnesis</title>
+</head>
+<p><a href="/">Home</a></p>
+<h1>@Model.Name/@Model.System - @Model.Version - Modules - @Model.Namespace</h1>
+<h2>@Model.Module.Summary</h2>
+
+<div style="display: grid; grid-template-columns: 50% 25% 25%;">
+    <div>
+        <h3>Readme</h3>
+        <p>@Model.Module.Readme</p>
+    </div>
+
+    <div style="display: flex;">
+        <h3>Inputs</h3>
+        <p>@Model.Module.Readme</p>
+    </div>
+
+    <div style="display: flex;">
+        <h3>Outputs</h3>
+        <p>@Model.Module.Readme</p>
+    </div>
+</div>

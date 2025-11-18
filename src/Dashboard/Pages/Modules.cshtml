@@ -7,13 +7,14 @@
 </head>
 <p><a href="/">Home</a></p>
 <h1>@Model.Namespace - Modules</h1>
-<table>
+<table style="width: 100%">
     <thead>
     <tr>
-        <th>Name</th>
-        <th>System</th>
-        <th>Version</th>
-        <th>Summary</th>
+        <th style="text-align: start">Name</th>
+        <th style="text-align: start">System</th>
+        <th style="text-align: start">Version</th>
+        <th style="text-align: start">Summary</th>
+        <th style="text-align: start">More</th>
     </tr>
     </thead>
     <tbody>
@@ -24,6 +25,7 @@
             <td>@module.System</td>
             <td>@module.Version</td>
             <td>@module.Summary</td>
+            <td><a href="/@module.Namespace/modules/@module.Name/@module.System/@module.Version">Details</a> <a href="@module.Source">Source</a></td>
         </tr>
     }
     </tbody>
