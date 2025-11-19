@@ -36,13 +36,13 @@
   },
   {
     "pname": "Google.Cloud.Firestore",
-    "version": "3.12.0",
-    "hash": "sha256-XMK5/KrHR1laYrmzLAsJQwFp0DFdkH4KL9V9e21rcA4="
+    "version": "3.13.0",
+    "hash": "sha256-Cdx4MobMFuvZLuL+hw8RooQGq6GAvVyA50RB/KtgMCY="
   },
   {
     "pname": "Google.Cloud.Firestore.V1",
-    "version": "3.12.0",
-    "hash": "sha256-MSPu018CB5aselaUKfv1JpZNuwWHHxAHbiRoYxc3oK8="
+    "version": "3.13.0",
+    "hash": "sha256-UlbyOF9d23AA8aAyqkV5JV/G4Amf78FPbRbe1k9Ate8="
   },
   {
     "pname": "Google.Cloud.Location",

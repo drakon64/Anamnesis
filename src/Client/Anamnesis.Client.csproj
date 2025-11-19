@@ -11,7 +11,7 @@
     <EnableAotAnalyzer>true</EnableAotAnalyzer>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Google.Cloud.Firestore" Version="3.12.0" />
+    <PackageReference Include="Google.Cloud.Firestore" Version="3.13.0" />
     <PackageReference Include="System.CommandLine" Version="2.0.0" />
   </ItemGroup>
 </Project>
