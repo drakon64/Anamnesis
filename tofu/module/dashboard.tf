@@ -41,6 +41,12 @@ resource "google_cloud_run_v2_service" "dashboard" {
         value = google_firestore_database.database.name
       }
 
+      env {
+        name = "ANAMNESIS_PROJECT"
+
+        value = data.google_project.project.name
+      }
+
       resources {
         cpu_idle = true
 

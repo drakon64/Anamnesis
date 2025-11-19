@@ -14,7 +14,10 @@ internal class Program
 
     internal static readonly CollectionReference ModulesCollection = new FirestoreDbBuilder
     {
-        ProjectId = "anamnesis-drakon64",
+        ProjectId =
+            Environment.GetEnvironmentVariable("ANAMNESIS_PROJECT")
+            ?? throw new InvalidOperationException("ANAMNESIS_PROJECT is null"),
+
         DatabaseId = Environment.GetEnvironmentVariable("ANAMNESIS_DATABASE"),
     }
         .Build()
