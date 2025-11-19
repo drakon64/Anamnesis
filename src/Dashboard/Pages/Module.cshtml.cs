@@ -1,3 +1,5 @@
+using Markdig;
+
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Anamnesis.Dashboard.Pages;
@@ -9,6 +11,7 @@ public class ModuleModel : PageModel
     public required string System { get; set; }
     public required string Version { get; set; }
     public required Module Module { get; set; }
+    public required string Readme { get; set; }
 
     public async Task OnGet(string ns, string name, string system, string version)
     {
@@ -26,5 +29,7 @@ public class ModuleModel : PageModel
                 .GetSnapshotAsync()
             select module.ConvertTo<Module>()
         ).ToArray()[0];
+
+        Readme = Markdown.ToHtml(Module.Readme);
     }
 }
