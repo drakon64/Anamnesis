@@ -44,7 +44,7 @@ resource "google_cloud_run_v2_service" "dashboard" {
       env {
         name = "ANAMNESIS_PROJECT"
 
-        value = data.google_project.project.name
+        value = data.google_project.project.project_id
       }
 
       resources {
