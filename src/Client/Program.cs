@@ -26,12 +26,12 @@ var versionArgument = new Argument<string>("version")
 
 var summaryArgument = new Argument<string>("summary")
 {
-    Description = "The version of the module to upload",
+    Description = "The summary of the module to upload",
 };
 
 var sourceArgument = new Argument<string>("source")
 {
-    Description = "The version of the module to upload",
+    Description = "The source of the module to upload",
 };
 
 var directoryArgument = new Argument<DirectoryInfo>("directory")
@@ -46,19 +46,19 @@ var latestOption = new Option<bool>("--no-latest")
 
 var bucketOption = new Option<string>("--bucket")
 {
-    Description = "Don't mark the uploaded module as the latest",
+    Description = "The Google Cloud Storage bucket to upload the module to",
     DefaultValueFactory = _ => Environment.GetEnvironmentVariable("ANAMNESIS_BUCKET"),
 };
 
 var databaseOption = new Option<string>("--database")
 {
-    Description = "Don't mark the uploaded module as the latest",
+    Description = "The Firestore database to store information about the module in",
     DefaultValueFactory = _ => Environment.GetEnvironmentVariable("ANAMNESIS_DATABASE"),
 };
 
 var projectOption = new Option<string>("--project")
 {
-    Description = "Don't mark the uploaded module as the latest",
+    Description = "The Google Cloud project that contains the Firestore database",
     DefaultValueFactory = _ => Environment.GetEnvironmentVariable("ANAMNESIS_PROJECT"),
 };
 
