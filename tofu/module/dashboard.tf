@@ -25,6 +25,12 @@ resource "google_cloud_run_v2_service" "dashboard" {
   default_uri_disabled = true
   ingress              = "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER"
 
+  scaling {
+    manual_instance_count = 0
+    max_instance_count    = 1
+    min_instance_count    = 0
+  }
+
   template {
     containers {
       image = local.dashboard_image
