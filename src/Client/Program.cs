@@ -118,13 +118,18 @@ rootCommand.SetAction(async parseResult =>
         XxHash3.Hash(Encoding.Default.GetBytes($"{ns}/{name}/{system}/{version}"))
     );
 
-    using var readme = (
-        from file in directory.GetFiles()
-        where file.Name == "README.md"
-        select file
-    )
-        .ToArray()[0]
-        .OpenText();
+    StreamReader readme;
+
+    try
+    {
+        readme = (from file in directory.GetFiles() where file.Name == "README.md" select file)
+            .ToArray()[0]
+            .OpenText();
+    }
+    catch (IndexOutOfRangeException)
+    {
+        throw new FileNotFoundException("Directory does not contain a `README.md` file");
+    }
 
     var document = new Module
     {
@@ -137,6 +142,8 @@ rootCommand.SetAction(async parseResult =>
         Readme = await readme.ReadToEndAsync(),
         Latest = parseResult.GetRequiredValue(latestOption),
     };
+
+    readme.Dispose();
 
     await database.Collection("modules").Document(path).SetAsync(document);
 });
