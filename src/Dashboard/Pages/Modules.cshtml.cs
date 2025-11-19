@@ -5,17 +5,16 @@ namespace Anamnesis.Dashboard.Pages;
 public class ModulesModel : PageModel
 {
     public required string Namespace { get; set; }
-    public required Module[] Modules { get; set; }
+    public required IEnumerable<Module> Modules { get; set; }
 
     public async Task OnGet(string ns)
     {
         Namespace = ns;
 
-        Modules = (
+        Modules =
             from module in await Program
                 .ModulesCollection.WhereEqualTo("latest", true)
                 .GetSnapshotAsync()
-            select module.ConvertTo<Module>()
-        ).ToArray();
+            select module.ConvertTo<Module>();
     }
 }
