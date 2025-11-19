@@ -1,8 +1,10 @@
 ﻿using System.CommandLine;
+using System.IO.Compression;
 using System.IO.Hashing;
 using System.Text;
 
 using Google.Cloud.Firestore;
+using Google.Cloud.Storage.V1;
 
 var namespaceArgument = new Argument<string>("namespace")
 {
@@ -78,18 +80,39 @@ rootCommand.Options.Add(latestOption);
 
 rootCommand.SetAction(async parseResult =>
 {
+    await Console.Out.WriteLineAsync("Uploading module to Cloud Storage");
+
     var directory = parseResult.GetRequiredValue(directoryArgument);
+
+    using var moduleZip = new MemoryStream();
+    await ZipFile.CreateFromDirectoryAsync(
+        directory.FullName,
+        moduleZip,
+        CompressionLevel.SmallestSize,
+        false
+    );
+
+    var ns = parseResult.GetRequiredValue(namespaceArgument);
+    var name = parseResult.GetRequiredValue(nameArgument);
+    var system = parseResult.GetRequiredValue(systemArgument);
+    var version = parseResult.GetRequiredValue(versionArgument);
+
+    using var storage = await StorageClient.CreateAsync();
+
+    await storage.UploadObjectAsync(
+        parseResult.GetRequiredValue(bucketOption),
+        $"{ns}/modules/{name}/{system}/{version}.zip",
+        "application/zip",
+        moduleZip
+    );
+
+    await Console.Out.WriteLineAsync("Storing module information in Firestore");
 
     var database = new FirestoreDbBuilder
     {
         ProjectId = parseResult.GetRequiredValue(projectOption),
         DatabaseId = parseResult.GetRequiredValue(databaseOption),
     }.Build();
-
-    var ns = parseResult.GetRequiredValue(namespaceArgument);
-    var name = parseResult.GetRequiredValue(nameArgument);
-    var system = parseResult.GetRequiredValue(systemArgument);
-    var version = parseResult.GetRequiredValue(versionArgument);
 
     var path = Convert.ToHexStringLower(
         XxHash3.Hash(Encoding.Default.GetBytes($"{ns}/{name}/{system}/{version}"))

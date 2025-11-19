@@ -10,14 +10,39 @@
     "hash": "sha256-U8K+B3QFmWjI6zoF7Z7EPk22dsJ8YcZbbAb1Gaywjog="
   },
   {
+    "pname": "Google.Api.Gax",
+    "version": "4.9.0",
+    "hash": "sha256-3fmCAf2Ij1UQHiydlZM0J8QsfTNWrR5zs7ucCzsYM0s="
+  },
+  {
     "pname": "Google.Api.Gax.Grpc",
     "version": "4.12.1",
     "hash": "sha256-0H13wclStD6LoGHXMjT4wd+SYKuOZsWRiMWEle74EAk="
   },
   {
+    "pname": "Google.Api.Gax.Rest",
+    "version": "4.9.0",
+    "hash": "sha256-Lbcj8WtKqg2O9hIlSJPdRwf7ixz6qY4fKBG2ybphY+Q="
+  },
+  {
+    "pname": "Google.Apis",
+    "version": "1.68.0",
+    "hash": "sha256-KUFT+rWxzeWVMWc34cqrFs1N/FxvG15vWqZruwWXHX4="
+  },
+  {
+    "pname": "Google.Apis",
+    "version": "1.69.0",
+    "hash": "sha256-/9JN0CZIFZnmGS69ki38RlNzQiwp4yO0MFDeRk1slsg="
+  },
+  {
     "pname": "Google.Apis",
     "version": "1.72.0",
     "hash": "sha256-VS9W6ElipbN5WR/Sq5Q3dBMgoROXOzBAoUk1Pht0YQw="
+  },
+  {
+    "pname": "Google.Apis.Auth",
+    "version": "1.68.0",
+    "hash": "sha256-pptb3sxuFZMREdgGDJzdOSfn84XF5PMzzXwe+w7N+kQ="
   },
   {
     "pname": "Google.Apis.Auth",
@@ -31,8 +56,23 @@
   },
   {
     "pname": "Google.Apis.Core",
+    "version": "1.68.0",
+    "hash": "sha256-eoGiEopf3PfqAJYxBqomtV6f2mMBeXyjyXlXOAqbsis="
+  },
+  {
+    "pname": "Google.Apis.Core",
+    "version": "1.69.0",
+    "hash": "sha256-IW1AOY8o6hHkrc/tINsS/VCOUrOSoXb6OCSEF6gamkc="
+  },
+  {
+    "pname": "Google.Apis.Core",
     "version": "1.72.0",
     "hash": "sha256-9nTQ2RO6kIWuqaP0jR5BaPSoD6mxOTd7SsfN0w3azek="
+  },
+  {
+    "pname": "Google.Apis.Storage.v1",
+    "version": "1.69.0.3707",
+    "hash": "sha256-CS3QoU7YElrrkUwSyTJfR58GlkOUNtkCPHzuXxbgGTE="
   },
   {
     "pname": "Google.Cloud.Firestore",
@@ -48,6 +88,11 @@
     "pname": "Google.Cloud.Location",
     "version": "2.4.0",
     "hash": "sha256-Bpn6jYpN+fnXJRt4ltW/NWYzqY7Ecrb68AMN5mPJToI="
+  },
+  {
+    "pname": "Google.Cloud.Storage.V1",
+    "version": "4.13.0",
+    "hash": "sha256-PsC3r+oJejRfGGDNHNT0n1FP89qlU5VPvBk3M4G6Wrc="
   },
   {
     "pname": "Google.LongRunning",
@@ -93,6 +138,11 @@
     "pname": "Microsoft.Extensions.Logging.Abstractions",
     "version": "6.0.0",
     "hash": "sha256-QNqcQ3x+MOK7lXbWkCzSOWa/2QyYNbdM/OEEbWN15Sw="
+  },
+  {
+    "pname": "Newtonsoft.Json",
+    "version": "13.0.3",
+    "hash": "sha256-hy/BieY4qxBWVVsDqqOPaLy1QobiIapkbrESm6v2PHc="
   },
   {
     "pname": "Newtonsoft.Json",
