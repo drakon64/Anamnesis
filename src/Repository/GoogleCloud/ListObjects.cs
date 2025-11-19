@@ -32,3 +32,12 @@ internal sealed class ListObjectsResponse
     [JsonPropertyName("items")]
     public required Object[] Items { get; init; }
 }
+
+internal sealed class Object
+{
+    [JsonPropertyName("contentType")]
+    public required string ContentType { get; init; }
+
+    [JsonPropertyName("name")]
+    public required string Name { get; init; }
+}

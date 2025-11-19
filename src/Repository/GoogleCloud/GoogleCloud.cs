@@ -36,12 +36,3 @@ internal sealed class AccessTokenResponse
     [JsonPropertyName("token_type")]
     public required string TokenType { get; init; }
 }
-
-internal sealed class Object
-{
-    [JsonPropertyName("contentType")]
-    public required string ContentType { get; init; }
-
-    [JsonPropertyName("name")]
-    public required string Name { get; init; }
-}
