@@ -110,6 +110,11 @@
     "hash": "sha256-cUJTPCLcnA6959PGdwWw8zsjFxhYGI+SZeIxnMC/Cwc="
   },
   {
+    "pname": "System.IO.Hashing",
+    "version": "10.0.0",
+    "hash": "sha256-zq3baIIsQ1kaY4CVl0vpkDcZb2ZNwT7wC0wDqzEN5oI="
+  },
+  {
     "pname": "System.Linq.Async",
     "version": "6.0.3",
     "hash": "sha256-i+2XnsOJnD7R/vCFtadp+lwrkDNAscANes2Ur0MSTl8="

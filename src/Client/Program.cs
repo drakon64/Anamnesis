@@ -1,4 +1,38 @@
 ﻿using System.CommandLine;
+using System.IO.Hashing;
+using System.Text;
+
+using Google.Cloud.Firestore;
+
+var namespaceArgument = new Argument<string>("namespace")
+{
+    Description = "The namespace to upload the module to",
+};
+
+var nameArgument = new Argument<string>("name")
+{
+    Description = "The name of the module to upload",
+};
+
+var systemArgument = new Argument<string>("system")
+{
+    Description = "The system of the module to upload",
+};
+
+var versionArgument = new Argument<string>("version")
+{
+    Description = "The version of the module to upload",
+};
+
+var summaryArgument = new Argument<string>("summary")
+{
+    Description = "The version of the module to upload",
+};
+
+var sourceArgument = new Argument<string>("source")
+{
+    Description = "The version of the module to upload",
+};
 
 var directoryArgument = new Argument<DirectoryInfo>("directory")
 {
@@ -10,8 +44,106 @@ var latestOption = new Option<bool>("--no-latest")
     Description = "Don't mark the uploaded module as the latest",
 };
 
+var bucketOption = new Option<string>("--bucket")
+{
+    Description = "Don't mark the uploaded module as the latest",
+    DefaultValueFactory = _ => Environment.GetEnvironmentVariable("ANAMNESIS_BUCKET"),
+};
+
+var databaseOption = new Option<string>("--database")
+{
+    Description = "Don't mark the uploaded module as the latest",
+    DefaultValueFactory = _ => Environment.GetEnvironmentVariable("ANAMNESIS_DATABASE"),
+};
+
+var projectOption = new Option<string>("--project")
+{
+    Description = "Don't mark the uploaded module as the latest",
+    DefaultValueFactory = _ => Environment.GetEnvironmentVariable("ANAMNESIS_PROJECT"),
+};
+
 var rootCommand = new RootCommand("Anamnesis registry client");
+rootCommand.Arguments.Add(namespaceArgument);
+rootCommand.Arguments.Add(nameArgument);
+rootCommand.Arguments.Add(systemArgument);
+rootCommand.Arguments.Add(versionArgument);
 rootCommand.Arguments.Add(directoryArgument);
+rootCommand.Arguments.Add(summaryArgument);
+rootCommand.Arguments.Add(sourceArgument);
+
+rootCommand.Options.Add(bucketOption);
+rootCommand.Options.Add(databaseOption);
+rootCommand.Options.Add(projectOption);
 rootCommand.Options.Add(latestOption);
 
+rootCommand.SetAction(async parseResult =>
+{
+    var directory = parseResult.GetRequiredValue(directoryArgument);
+
+    var database = new FirestoreDbBuilder
+    {
+        ProjectId = parseResult.GetRequiredValue(projectOption),
+        DatabaseId = parseResult.GetRequiredValue(databaseOption),
+    }.Build();
+
+    var ns = parseResult.GetRequiredValue(namespaceArgument);
+    var name = parseResult.GetRequiredValue(nameArgument);
+    var system = parseResult.GetRequiredValue(systemArgument);
+    var version = parseResult.GetRequiredValue(versionArgument);
+
+    var path = Convert.ToHexStringLower(
+        XxHash3.Hash(Encoding.Default.GetBytes($"{ns}/{name}/{system}/{version}"))
+    );
+
+    using var readme = (
+        from file in directory.GetFiles()
+        where file.Name == "README.md"
+        select file
+    )
+        .ToArray()[0]
+        .OpenText();
+
+    var document = new Module
+    {
+        Namespace = ns,
+        Name = name,
+        System = system,
+        Version = version,
+        Summary = parseResult.GetRequiredValue(summaryArgument),
+        Source = parseResult.GetRequiredValue(sourceArgument),
+        Readme = await readme.ReadToEndAsync(),
+        Latest = parseResult.GetRequiredValue(latestOption),
+    };
+
+    await database.Collection("modules").Document(path).SetAsync(document);
+});
+
 return rootCommand.Parse(args).Invoke();
+
+[FirestoreData]
+internal sealed class Module
+{
+    [FirestoreProperty("namespace")]
+    public required string Namespace { get; init; }
+
+    [FirestoreProperty("name")]
+    public required string Name { get; init; }
+
+    [FirestoreProperty("system")]
+    public required string System { get; init; }
+
+    [FirestoreProperty("version")]
+    public required string Version { get; init; }
+
+    [FirestoreProperty("summary")]
+    public required string Summary { get; init; }
+
+    [FirestoreProperty("source")]
+    public required string Source { get; init; }
+
+    [FirestoreProperty("readme")]
+    public required string Readme { get; init; }
+
+    [FirestoreProperty("latest")]
+    public required bool Latest { get; init; }
+}
