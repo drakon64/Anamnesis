@@ -89,13 +89,13 @@ module "lb-http" {
 
   create_ipv6_address             = true
   enable_ipv6                     = true
-  create_url_map = false
+  create_url_map                  = false
   http_forward                    = false
   load_balancing_scheme           = "EXTERNAL_MANAGED"
   managed_ssl_certificate_domains = [var.domain]
   ssl                             = true
   ssl_policy                      = google_compute_ssl_policy.tls.self_link
-  url_map = google_compute_url_map.lb.id
+  url_map                         = google_compute_url_map.lb.id
 
   depends_on = [google_project_service.compute]
 }
