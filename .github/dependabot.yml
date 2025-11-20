@@ -6,9 +6,7 @@ updates:
       interval: daily
 
   - package-ecosystem: nuget
-    directories:
-      - /src/Dashboard
-      - /src/Client
+    directory: /src/Dashboard
     schedule:
       interval: daily
 

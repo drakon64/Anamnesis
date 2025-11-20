@@ -1,5 +1,4 @@
 <Solution>
   <Project Path="src/Repository/Anamnesis.csproj" />
   <Project Path="src/Dashboard/Anamnesis.Dashboard.csproj" />
-  <Project Path="src/Client/Anamnesis.Client.csproj" />
 </Solution>
