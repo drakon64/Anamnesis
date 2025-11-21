@@ -14,8 +14,15 @@ public class ModuleModel : PageModel
     public required string Version { get; set; }
     public required Module Module { get; set; }
     public required string Readme { get; set; }
+
     public required string Variables { get; set; }
     public required string Outputs { get; set; }
+
+    private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
+    {
+        WriteIndented = true,
+        IndentSize = 2,
+    };
 
     public async Task OnGet(string ns, string name, string system, string version)
     {
@@ -36,7 +43,7 @@ public class ModuleModel : PageModel
 
         Readme = Markdown.ToHtml(Module.Readme);
 
-        Variables = JsonSerializer.Serialize(Module.Variables);
-        Outputs = JsonSerializer.Serialize(Module.Outputs);
+        Variables = JsonSerializer.Serialize(Module.Variables, JsonSerializerOptions);
+        Outputs = JsonSerializer.Serialize(Module.Outputs, JsonSerializerOptions);
     }
 }
