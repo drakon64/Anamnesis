@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 using Markdig;
 
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,6 +14,8 @@ public class ModuleModel : PageModel
     public required string Version { get; set; }
     public required Module Module { get; set; }
     public required string Readme { get; set; }
+    public required string Variables { get; set; }
+    public required string Outputs { get; set; }
 
     public async Task OnGet(string ns, string name, string system, string version)
     {
@@ -31,5 +35,8 @@ public class ModuleModel : PageModel
         ).ToArray()[0];
 
         Readme = Markdown.ToHtml(Module.Readme);
+
+        Variables = JsonSerializer.Serialize(Module.Variables);
+        Outputs = JsonSerializer.Serialize(Module.Outputs);
     }
 }
