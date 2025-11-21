@@ -157,7 +157,7 @@ rootCommand.SetAction(async parseResult =>
         Outputs = config.Outputs,
         Source = parseResult.GetRequiredValue(sourceArgument),
         Readme = await readme.ReadToEndAsync(),
-        Latest = parseResult.GetRequiredValue(latestOption),
+        Latest = !parseResult.GetRequiredValue(latestOption),
     };
 
     readme.Dispose();
