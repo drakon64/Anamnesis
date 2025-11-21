@@ -51,6 +51,12 @@ public sealed class Module
 
     [FirestoreProperty("version")]
     public required string Version { get; init; }
+    
+    [FirestoreProperty("variables")]
+    public required Dictionary<string, Variable> Variables { get; init; }
+
+    [FirestoreProperty("outputs")]
+    public required Dictionary<string, Output> Outputs { get; init; }
 
     [FirestoreProperty("source")]
     public required string Source { get; init; }
@@ -63,6 +69,55 @@ public sealed class Module
 
     [FirestoreProperty("latest")]
     public required bool Latest { get; init; }
+}
+
+public sealed class ModuleConfig
+{
+    [JsonPropertyName("variables")]
+    public required Dictionary<string, Variable> Variables { get; init; }
+
+    [JsonPropertyName("outputs")]
+    public required Dictionary<string, Output> Outputs { get; init; }
+}
+
+[FirestoreData]
+public sealed class Variable
+{
+    [FirestoreProperty("name")]
+    [JsonPropertyName("name")]
+    public required string Name { get; init; }
+
+    [FirestoreProperty("type")]
+    [JsonPropertyName("type")]
+    public string? Type { get; init; }
+
+    [FirestoreProperty("description")]
+    [JsonPropertyName("description")]
+    public string? Description { get; init; }
+
+    [FirestoreProperty("required")]
+    [JsonPropertyName("required")]
+    public required bool Required { get; init; }
+
+    [FirestoreProperty("sensitive")]
+    [JsonPropertyName("sensitive")]
+    public bool Sensitive { get; init; } = false;
+}
+
+[FirestoreData]
+public sealed class Output
+{
+    [FirestoreProperty("name")]
+    [JsonPropertyName("name")]
+    public required string Name { get; init; }
+
+    [FirestoreProperty("description")]
+    [JsonPropertyName("description")]
+    public string? Description { get; init; }
+
+    [FirestoreProperty("sensitive")]
+    [JsonPropertyName("sensitive")]
+    public bool Sensitive { get; init; } = false;
 }
 
 [JsonSerializable(typeof(AccessTokenResponse))]
