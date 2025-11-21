@@ -10,21 +10,19 @@
 <h2>@Model.Module.Summary</h2>
 
 <div style="display: grid; grid-template-columns: calc(100%/3) calc(100%/3) calc(100%/3);">
-    <div style="border: 1px solid">
+    <div>
         <h3>Readme</h3>
-        @Html.Raw(Model.Readme)
+        <div style="border: 1px solid">
+            @Html.Raw(Model.Readme)
+        </div>
     </div>
 
-    <div style="border: 1px solid">
+    <div>
         <h3>Variables</h3>
         @foreach (var variable in Model.Module.Variables)
         {
+            <h4>@variable.Value.Name</h4>
             <table style="border: 1px solid">
-                <tr style="border: 1px solid">
-                    <th style="border: 1px solid">Name</th>
-                    <td style="border: 1px solid">@variable.Value.Name</td>
-                </tr>
-
                 @if (variable.Value.Type != null)
                 {
                     <tr style="border: 1px solid">
@@ -54,16 +52,12 @@
         }
     </div>
 
-    <div style="border: 1px solid">
+    <div>
         <h3>Outputs</h3>
         @foreach (var output in Model.Module.Outputs)
         {
+            <h4>@output.Value.Name</h4>
             <table style="border: 1px solid">
-                <tr style="border: 1px solid">
-                    <th style="border: 1px solid">Name</th>
-                    <td style="border: 1px solid">@output.Value.Name</td>
-                </tr>
-
                 @if (output.Value.Description != null)
                 {
                     <tr style="border: 1px solid">
