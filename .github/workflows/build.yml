@@ -39,7 +39,16 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Build
-        run: cachix watch-exec drakon64 -- nix-build -A repository.docker -A dashboard.docker -A client
+        run: nix-build -A repository.docker -A dashboard.docker -A client
+        #run: cachix watch-exec drakon64 -- nix-build -A repository.docker -A dashboard.docker -A client
+
+      - name: Upload to Cachix
+        run: |
+          nix eval --expr '(import ./. {}).repository' --raw --impure | cachix push drakon64
+          nix eval --expr '(import ./. {}).repository.docker' --raw --impure | cachix push drakon64
+          nix eval --expr '(import ./. {}).dashboard' --raw --impure | cachix push drakon64
+          nix eval --expr '(import ./. {}).dashboard.docker' --raw --impure | cachix push drakon64
+          nix eval --expr '(import ./. {}).client' --raw --impure | cachix push drakon64
 
       - name: Create Cachix pins
         run: |
@@ -48,7 +57,6 @@ jobs:
           cachix pin drakon64 anamnesis-dashboard "$(nix eval --expr '(import ./. {}).dashboard' --raw --impure)" --keep-revisions 1
           cachix pin drakon64 anamnesis-dashboard-docker "$(nix eval --expr '(import ./. {}).dashboard.docker' --raw --impure)" --keep-revisions 1
           cachix pin drakon64 anamnesis-client "$(nix eval --expr '(import ./. {}).client' --raw --impure)" --keep-revisions 1
-        continue-on-error: true
 
       - run: |
           docker load < result
