@@ -11,10 +11,6 @@ pkgs.mkShellNoCC {
   ];
 
   passthru = {
-    client = pkgs.mkShellNoCC {
-      packages = [ (pkgs.callPackage ./. { }).client ];
-    };
-
     lon = pkgs.mkShellNoCC {
       packages = [ pkgs.lon ];
     };
