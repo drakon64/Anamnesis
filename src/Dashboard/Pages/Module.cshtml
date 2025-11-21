@@ -17,11 +17,66 @@
 
     <div>
         <h3>Variables</h3>
-        <p>@Model.Variables</p>
+        @foreach (var variable in Model.Module.Variables)
+        {
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td>@variable.Value.Name</td>
+                </tr>
+
+                @if (variable.Value.Type != null)
+                {
+                    <tr>
+                        <th>Type</th>
+                        <td>@variable.Value.Type</td>
+                    </tr>
+                }
+
+                @if (variable.Value.Description != null)
+                {
+                    <tr>
+                        <th>Description</th>
+                        <td>@variable.Value.Description</td>
+                    </tr>
+                }
+
+                <tr>
+                    <th>Required</th>
+                    <td>@variable.Value.Required</td>
+                </tr>
+
+                <tr>
+                    <th>Sensitive</th>
+                    <td>@variable.Value.Sensitive</td>
+                </tr>
+            </table>
+        }
     </div>
 
     <div>
         <h3>Outputs</h3>
-        <p>@Model.Outputs</p>
+        @foreach (var output in Model.Module.Outputs)
+        {
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td>@output.Value.Name</td>
+                </tr>
+
+                @if (output.Value.Description != null)
+                {
+                    <tr>
+                        <th>Description</th>
+                        <td>@output.Value.Description</td>
+                    </tr>
+                }
+
+                <tr>
+                    <th>Sensitive</th>
+                    <td>@output.Value.Sensitive</td>
+                </tr>
+            </table>
+        }
     </div>
 </div>

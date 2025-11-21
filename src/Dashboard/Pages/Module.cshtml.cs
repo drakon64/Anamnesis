@@ -15,9 +15,6 @@ public class ModuleModel : PageModel
     public required Module Module { get; set; }
     public required string Readme { get; set; }
 
-    public required string Variables { get; set; }
-    public required string Outputs { get; set; }
-
     private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
     {
         WriteIndented = true,
@@ -42,8 +39,5 @@ public class ModuleModel : PageModel
         ).ToArray()[0];
 
         Readme = Markdown.ToHtml(Module.Readme);
-
-        Variables = JsonSerializer.Serialize(Module.Variables, JsonSerializerOptions);
-        Outputs = JsonSerializer.Serialize(Module.Outputs, JsonSerializerOptions);
     }
 }
