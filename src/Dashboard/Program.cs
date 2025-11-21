@@ -71,15 +71,6 @@ public sealed class Module
     public required bool Latest { get; init; }
 }
 
-public sealed class ModuleConfig
-{
-    [JsonPropertyName("variables")]
-    public required Dictionary<string, Variable> Variables { get; init; }
-
-    [JsonPropertyName("outputs")]
-    public required Dictionary<string, Output> Outputs { get; init; }
-}
-
 [FirestoreData]
 public sealed class Variable
 {
