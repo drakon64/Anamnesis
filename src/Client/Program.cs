@@ -1,7 +1,10 @@
 ﻿using System.CommandLine;
+using System.Diagnostics;
 using System.IO.Compression;
 using System.IO.Hashing;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 using Google.Cloud.Firestore;
 using Google.Cloud.Storage.V1;
@@ -118,6 +121,18 @@ rootCommand.SetAction(async parseResult =>
         XxHash3.Hash(Encoding.Default.GetBytes($"{ns}/{name}/{system}/{version}"))
     );
 
+    var processStartInfo = new ProcessStartInfo { FileName = "terraform-config-inspect" };
+    processStartInfo.ArgumentList.Add(directory.FullName);
+    processStartInfo.ArgumentList.Add("--json");
+    processStartInfo.RedirectStandardOutput = true;
+
+    using var process = Process.Start(processStartInfo);
+    await process!.WaitForExitAsync();
+
+    var config = await JsonSerializer.DeserializeAsync<ModuleConfig>(
+        process.StandardOutput.BaseStream
+    );
+
     StreamReader readme;
 
     try
@@ -138,6 +153,8 @@ rootCommand.SetAction(async parseResult =>
         System = system,
         Version = version,
         Summary = parseResult.GetRequiredValue(summaryArgument),
+        Variables = config!.Variables,
+        Outputs = config.Outputs,
         Source = parseResult.GetRequiredValue(sourceArgument),
         Readme = await readme.ReadToEndAsync(),
         Latest = parseResult.GetRequiredValue(latestOption),
@@ -168,6 +185,12 @@ internal sealed class Module
     [FirestoreProperty("summary")]
     public required string Summary { get; init; }
 
+    [FirestoreProperty("variables")]
+    public required Dictionary<string, Variable> Variables { get; init; }
+
+    [FirestoreProperty("outputs")]
+    public required Dictionary<string, Output> Outputs { get; init; }
+
     [FirestoreProperty("source")]
     public required string Source { get; init; }
 
@@ -176,4 +199,53 @@ internal sealed class Module
 
     [FirestoreProperty("latest")]
     public required bool Latest { get; init; }
+}
+
+internal sealed class ModuleConfig
+{
+    [JsonPropertyName("variables")]
+    public required Dictionary<string, Variable> Variables { get; init; }
+
+    [JsonPropertyName("outputs")]
+    public required Dictionary<string, Output> Outputs { get; init; }
+}
+
+[FirestoreData]
+internal sealed class Variable
+{
+    [FirestoreProperty("name")]
+    [JsonPropertyName("name")]
+    public required string Name { get; init; }
+
+    [FirestoreProperty("type")]
+    [JsonPropertyName("type")]
+    public string? Type { get; init; }
+
+    [FirestoreProperty("description")]
+    [JsonPropertyName("description")]
+    public string? Description { get; init; }
+
+    [FirestoreProperty("required")]
+    [JsonPropertyName("required")]
+    public required bool Required { get; init; }
+
+    [FirestoreProperty("sensitive")]
+    [JsonPropertyName("sensitive")]
+    public bool Sensitive { get; init; } = false;
+}
+
+[FirestoreData]
+internal sealed class Output
+{
+    [FirestoreProperty("name")]
+    [JsonPropertyName("name")]
+    public required string Name { get; init; }
+
+    [FirestoreProperty("description")]
+    [JsonPropertyName("description")]
+    public string? Description { get; init; }
+
+    [FirestoreProperty("sensitive")]
+    [JsonPropertyName("sensitive")]
+    public bool Sensitive { get; init; } = false;
 }

@@ -10,6 +10,16 @@
       "revision": "85a6c4a07faa12aaccd81b36ba9bfc2bec974fa1",
       "url": "https://github.com/NixOS/nixpkgs/archive/85a6c4a07faa12aaccd81b36ba9bfc2bec974fa1.tar.gz",
       "hash": "sha256-3YJkOBrFpmcusnh7i8GXXEyh7qZG/8F5z5+717550Hk="
+    },
+    "terraform-config-inspect-nix": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "drakon64",
+      "repo": "terraform-config-inspect-nix",
+      "branch": "main",
+      "revision": "dba0955175ffbbc77d954474a3960dacf4b5ed6b",
+      "url": "https://github.com/drakon64/terraform-config-inspect-nix/archive/dba0955175ffbbc77d954474a3960dacf4b5ed6b.tar.gz",
+      "hash": "sha256-y/6KpAEXYyyvPUhDjlxj9ONn5Q3WZoS4ABY3QtU+W/g="
     }
   }
 }
