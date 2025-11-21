@@ -21,7 +21,6 @@ buildDotnetModule (finalAttrs: {
         ./appsettings.Development.json
         ./Anamnesis.http
         (lib.fileset.maybeMissing ./bin)
-        (lib.fileset.maybeMissing ./config)
         (lib.fileset.maybeMissing ./obj)
         ./.gitignore
 

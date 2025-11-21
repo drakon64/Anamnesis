@@ -18,7 +18,6 @@ buildDotnetModule (finalAttrs: {
     fileset = fs.difference (./.) (
       fs.unions [
         (lib.fileset.maybeMissing ./bin)
-        (lib.fileset.maybeMissing ./config)
         (lib.fileset.maybeMissing ./obj)
         ./.gitignore
 

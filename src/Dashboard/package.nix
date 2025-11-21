@@ -20,7 +20,6 @@ buildDotnetModule (finalAttrs: {
       fs.unions [
         ./appsettings.Development.json
         (lib.fileset.maybeMissing ./bin)
-        (lib.fileset.maybeMissing ./config)
         (lib.fileset.maybeMissing ./obj)
         ./.gitignore
 
