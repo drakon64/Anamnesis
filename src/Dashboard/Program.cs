@@ -51,7 +51,7 @@ public sealed class Module
 
     [FirestoreProperty("version")]
     public required string Version { get; init; }
-    
+
     [FirestoreProperty("variables")]
     public required Dictionary<string, Variable> Variables { get; init; }
 
