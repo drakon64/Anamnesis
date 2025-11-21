@@ -9,13 +9,15 @@
 <h1>@Model.Namespace/@Model.Name/@Model.System - @Model.Version</h1>
 <h2>@Model.Module.Summary</h2>
 
-<div style="display: grid; grid-template-columns: calc(100%/3) calc(100%/3) calc(100%/3);">
+<div style="display: grid; grid-template-columns: 33% 0.5% 33% 0.5% 33%;">
     <div>
         <h3>Readme</h3>
         <div style="border: 1px solid">
             @Html.Raw(Model.Readme)
         </div>
     </div>
+
+    <div/>
 
     <div>
         <h3>Variables</h3>
@@ -51,6 +53,8 @@
             </table>
         }
     </div>
+
+    <div/>
 
     <div>
         <h3>Outputs</h3>
