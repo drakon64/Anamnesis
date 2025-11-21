@@ -3,10 +3,10 @@
 @model ModuleModel
 <!DOCTYPE html>
 <head>
-    <title>@Model.Name/@Model.System - @Model.Version - Modules - @Model.Namespace - Anamnesis</title>
+    <title>@Model.Namespace/@Model.Name/@Model.System - @Model.Version - Anamnesis</title>
 </head>
-<p><a href="/">Home</a></p>
-<h1>@Model.Name/@Model.System - @Model.Version - Modules - @Model.Namespace</h1>
+<p><a href="/">Home</a> <a href="/@Model.Namespace/modules">@Model.Namespace</a></p>
+<h1>@Model.Namespace/@Model.Name/@Model.System - @Model.Version</h1>
 <h2>@Model.Module.Summary</h2>
 
 <div style="display: grid; grid-template-columns: calc(100%/3) calc(100%/3) calc(100%/3);">
