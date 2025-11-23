@@ -31,9 +31,9 @@ jobs:
 
       - name: Evaluate with current lockfile
         run: |
-          echo "CURRENT_REPOSITORY_HASH=$(nix eval --expr '(import ./. {}).repository.docker' --raw --impure)" >> "$GITHUB_ENV"
-          echo "CURRENT_DASHBOARD_HASH=$(nix eval --expr '(import ./. {}).dashboard.docker' --raw --impure)" >> "$GITHUB_ENV"
-          echo "CURRENT_CLIENT_HASH=$(nix eval --expr '(import ./. {}).client' --raw --impure)" >> "$GITHUB_ENV"
+          echo "CURRENT_REPOSITORY_HASH=$(nix eval --file default.nix --raw repository.docker)" >> "$GITHUB_ENV"
+          echo "CURRENT_DASHBOARD_HASH=$(nix eval --file default.nix --raw dashboard.docker)" >> "$GITHUB_ENV"
+          echo "CURRENT_CLIENT_HASH=$(nix eval --file default.nix --raw client)" >> "$GITHUB_ENV"
           echo "CURRENT_SHELL_HASH=$(nix eval --expr 'import ./shell.nix {}' --raw --impure)" >> "$GITHUB_ENV"
 
       - name: Update Lon lockfile
