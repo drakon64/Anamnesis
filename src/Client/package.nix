@@ -3,6 +3,8 @@
   lib,
   buildDotnetModule,
   dotnetCorePackages,
+
+  terraform-config-inspect,
   ...
 }:
 let
@@ -34,6 +36,12 @@ buildDotnetModule (finalAttrs: {
   dotnet-runtime = dotnetCorePackages.runtime_10_0;
 
   executables = [ "Anamnesis.Client" ];
+
+  postFixup = ''
+    wrapProgram $out/bin/Anamnesis.Client --prefix PATH : ${
+      lib.makeBinPath [ terraform-config-inspect ]
+    }
+  '';
 
   meta = {
     license = lib.licenses.eupl12;

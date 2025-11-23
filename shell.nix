@@ -11,8 +11,6 @@ pkgs.mkShellNoCC {
     lon
     nixfmt-rfc-style
     opentofu
-    
-    terraform-config-inspect
   ];
 
   passthru = {
