@@ -17,9 +17,9 @@
       "owner": "drakon64",
       "repo": "terraform-config-inspect-nix",
       "branch": "main",
-      "revision": "dba0955175ffbbc77d954474a3960dacf4b5ed6b",
-      "url": "https://github.com/drakon64/terraform-config-inspect-nix/archive/dba0955175ffbbc77d954474a3960dacf4b5ed6b.tar.gz",
-      "hash": "sha256-y/6KpAEXYyyvPUhDjlxj9ONn5Q3WZoS4ABY3QtU+W/g="
+      "revision": "94c31acb83eea1a78aa4a3c1e0e436d53918f04b",
+      "url": "https://github.com/drakon64/terraform-config-inspect-nix/archive/94c31acb83eea1a78aa4a3c1e0e436d53918f04b.tar.gz",
+      "hash": "sha256-j+NOko+zesPMaJ3UAdZu3k2LZQBqPW3kiIYcMtBfgyk="
     }
   }
 }
