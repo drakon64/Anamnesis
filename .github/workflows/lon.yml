@@ -37,7 +37,7 @@ jobs:
           echo "CURRENT_SHELL_HASH=$(nix eval --expr 'import ./shell.nix {}' --raw --impure)" >> "$GITHUB_ENV"
 
       - name: Update Lon lockfile
-        run: nix-shell -A lon --run "lon update nixpkgs"
+        run: nix-shell -A lon --run "lon update"
 
       - name: Build and evaluate with updated lockfile
         run: |
