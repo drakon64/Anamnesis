@@ -119,7 +119,7 @@ jobs:
         run: |
           echo "$TERRAFORM_TFVARS" | base64 -d > terraform.tfvars
           nix-shell -A opentofu ../shell.nix --run "tofu init"
-          nix-shell -A opentofu ../shell.nix --run "tofu apply -auto-approve -target 'module.anamnesis.google_cloud_run_v2_service.dashboard["europe-west1"]' -target 'module.anamnesis.google_cloud_run_v2_service.dashboard["europe-west1"]' -target 'module.anamnesis.google_cloud_run_v2_service.repository["europe-west1"]' -target 'module.anamnesis.google_cloud_run_v2_service.repository["europe-west4"]'"
+          nix-shell -A opentofu ../shell.nix --run "tofu apply -auto-approve -target 'module.anamnesis.google_cloud_run_v2_service.dashboard[\"europe-west1\"]' -target 'module.anamnesis.google_cloud_run_v2_service.dashboard[\"europe-west1\"]' -target 'module.anamnesis.google_cloud_run_v2_service.repository[\"europe-west1\"]' -target 'module.anamnesis.google_cloud_run_v2_service.repository[\"europe-west4\"]'"
         working-directory: tofu
         env:
           TERRAFORM_TFVARS: ${{ secrets.TERRAFORM_TFVARS }}
