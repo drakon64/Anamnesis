@@ -4,7 +4,8 @@ using System.IO.Compression;
 using System.IO.Hashing;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
+
+using Anamnesis.Client.Model;
 
 using Google.Cloud.Firestore;
 using Google.Cloud.Storage.V1;
@@ -166,86 +167,3 @@ rootCommand.SetAction(async parseResult =>
 });
 
 return rootCommand.Parse(args).Invoke();
-
-[FirestoreData]
-internal sealed class Module
-{
-    [FirestoreProperty("namespace")]
-    public required string Namespace { get; init; }
-
-    [FirestoreProperty("name")]
-    public required string Name { get; init; }
-
-    [FirestoreProperty("system")]
-    public required string System { get; init; }
-
-    [FirestoreProperty("version")]
-    public required string Version { get; init; }
-
-    [FirestoreProperty("summary")]
-    public required string Summary { get; init; }
-
-    [FirestoreProperty("variables")]
-    public required Dictionary<string, Variable> Variables { get; init; }
-
-    [FirestoreProperty("outputs")]
-    public required Dictionary<string, Output> Outputs { get; init; }
-
-    [FirestoreProperty("source")]
-    public required string Source { get; init; }
-
-    [FirestoreProperty("readme")]
-    public required string Readme { get; init; }
-
-    [FirestoreProperty("latest")]
-    public required bool Latest { get; init; }
-}
-
-internal sealed class ModuleConfig
-{
-    [JsonPropertyName("variables")]
-    public required Dictionary<string, Variable> Variables { get; init; }
-
-    [JsonPropertyName("outputs")]
-    public required Dictionary<string, Output> Outputs { get; init; }
-}
-
-[FirestoreData]
-internal sealed class Variable
-{
-    [FirestoreProperty("name")]
-    [JsonPropertyName("name")]
-    public required string Name { get; init; }
-
-    [FirestoreProperty("type")]
-    [JsonPropertyName("type")]
-    public string? Type { get; init; }
-
-    [FirestoreProperty("description")]
-    [JsonPropertyName("description")]
-    public string? Description { get; init; }
-
-    [FirestoreProperty("required")]
-    [JsonPropertyName("required")]
-    public required bool Required { get; init; }
-
-    [FirestoreProperty("sensitive")]
-    [JsonPropertyName("sensitive")]
-    public bool Sensitive { get; init; } = false;
-}
-
-[FirestoreData]
-internal sealed class Output
-{
-    [FirestoreProperty("name")]
-    [JsonPropertyName("name")]
-    public required string Name { get; init; }
-
-    [FirestoreProperty("description")]
-    [JsonPropertyName("description")]
-    public string? Description { get; init; }
-
-    [FirestoreProperty("sensitive")]
-    [JsonPropertyName("sensitive")]
-    public bool Sensitive { get; init; } = false;
-}
