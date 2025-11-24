@@ -1,3 +1,5 @@
+using Anamnesis.Dashboard.Model;
+
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Anamnesis.Dashboard.Pages;

@@ -1,5 +1,7 @@
 using System.Text.Json;
 
+using Anamnesis.Dashboard.Model;
+
 using Markdig;
 
 using Microsoft.AspNetCore.Mvc.RazorPages;
