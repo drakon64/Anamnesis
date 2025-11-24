@@ -36,12 +36,6 @@ resource "google_cloud_run_v2_service" "dashboard" {
       image = local.dashboard_image
 
       env {
-        name = "ANAMNESIS_BUCKET"
-
-        value = google_storage_bucket.bucket.name
-      }
-
-      env {
         name = "ANAMNESIS_DATABASE"
 
         value = google_firestore_database.database.name
