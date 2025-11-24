@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 
 using Anamnesis.GoogleCloud;
+using Anamnesis.Model;
 using Anamnesis.Module;
 
 var builder = WebApplication.CreateSlimBuilder();
@@ -52,13 +53,6 @@ app.MapGet(
 );
 
 app.Run($"http://*:{Environment.GetEnvironmentVariable("PORT")}");
-
-internal sealed class RemoteServiceDiscovery
-{
-    [JsonInclude]
-    [JsonPropertyName("modules.v1")]
-    public readonly string ModulesV1 = "/terraform/modules/v1/";
-}
 
 [JsonSerializable(typeof(RemoteServiceDiscovery))]
 [JsonSerializable(typeof(ModuleVersions))]
