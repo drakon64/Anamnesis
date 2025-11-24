@@ -1,9 +1,6 @@
 {
   pkgs ? import (import ./lon.nix).nixpkgs { },
 }:
-let
-  terraform-config-inspect = pkgs.callPackage (import ./lon.nix).terraform-config-inspect-nix { };
-in
 pkgs.mkShellNoCC {
   packages = with pkgs; [
     dotnetCorePackages.sdk_10_0
@@ -15,8 +12,8 @@ pkgs.mkShellNoCC {
 
   passthru = {
     client = pkgs.mkShellNoCC {
-      packages = [
-        (pkgs.callPackage ./. { }).client
+      packages = with pkgs; [
+        (callPackage ./. { }).client
         terraform-config-inspect
       ];
     };

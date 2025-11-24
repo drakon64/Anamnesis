@@ -3,7 +3,6 @@
   lib,
   buildDotnetModule,
   dotnetCorePackages,
-
   terraform-config-inspect,
   ...
 }:

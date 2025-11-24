@@ -7,19 +7,9 @@
       "owner": "NixOS",
       "repo": "nixpkgs",
       "branch": "nixpkgs-unstable",
-      "revision": "85a6c4a07faa12aaccd81b36ba9bfc2bec974fa1",
-      "url": "https://github.com/NixOS/nixpkgs/archive/85a6c4a07faa12aaccd81b36ba9bfc2bec974fa1.tar.gz",
-      "hash": "sha256-3YJkOBrFpmcusnh7i8GXXEyh7qZG/8F5z5+717550Hk="
-    },
-    "terraform-config-inspect-nix": {
-      "type": "GitHub",
-      "fetchType": "tarball",
-      "owner": "drakon64",
-      "repo": "terraform-config-inspect-nix",
-      "branch": "main",
-      "revision": "94c31acb83eea1a78aa4a3c1e0e436d53918f04b",
-      "url": "https://github.com/drakon64/terraform-config-inspect-nix/archive/94c31acb83eea1a78aa4a3c1e0e436d53918f04b.tar.gz",
-      "hash": "sha256-j+NOko+zesPMaJ3UAdZu3k2LZQBqPW3kiIYcMtBfgyk="
+      "revision": "f1eaea72f9f50e2a50c4961ed6e1e61e8cc3fe1c",
+      "url": "https://github.com/NixOS/nixpkgs/archive/f1eaea72f9f50e2a50c4961ed6e1e61e8cc3fe1c.tar.gz",
+      "hash": "sha256-H+EgAdwxsBxMR5Ny/Tu4DKb/p8DmXUpyfP6c+bOrY8c="
     }
   }
 }
