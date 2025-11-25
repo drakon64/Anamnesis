@@ -34,6 +34,12 @@ var versionOption = new Option<string>("--module-version")
     Required = true,
 };
 
+var directoryOption = new Option<DirectoryInfo>("--directory")
+{
+    Description = "The directory to upload as a module",
+    Required = true,
+};
+
 var summaryOption = new Option<string>("--summary")
 {
     Description = "The summary of the module to upload",
@@ -43,12 +49,6 @@ var summaryOption = new Option<string>("--summary")
 var sourceOption = new Option<string>("--source")
 {
     Description = "The source of the module to upload",
-    Required = true,
-};
-
-var directoryOption = new Option<DirectoryInfo>("--directory")
-{
-    Description = "The directory to upload as a module",
     Required = true,
 };
 
@@ -84,10 +84,10 @@ rootCommand.Options.Add(directoryOption);
 rootCommand.Options.Add(summaryOption);
 rootCommand.Options.Add(sourceOption);
 
+rootCommand.Options.Add(latestOption);
 rootCommand.Options.Add(bucketOption);
 rootCommand.Options.Add(databaseOption);
 rootCommand.Options.Add(projectOption);
-rootCommand.Options.Add(latestOption);
 
 rootCommand.SetAction(async parseResult =>
 {
