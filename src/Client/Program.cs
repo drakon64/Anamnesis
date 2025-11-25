@@ -154,6 +154,31 @@ rootCommand.SetAction(async parseResult =>
         throw new FileNotFoundException("Directory does not contain a `README.md` file");
     }
 
+    var latest = !parseResult.GetRequiredValue(latestOption);
+
+    if (latest)
+    {
+        var snapshots = await database
+            .Collection("modules")
+            .WhereEqualTo("namespace", ns)
+            .WhereEqualTo("name", name)
+            .WhereEqualTo("system", system)
+            .WhereEqualTo("latest", true)
+            .GetSnapshotAsync();
+
+        var batch = database.StartBatch();
+
+        foreach (var snapshot in snapshots)
+        {
+            batch.Update(
+                snapshot.Reference,
+                new Dictionary<string, object> { { "latest", false } }
+            );
+        }
+
+        await batch.CommitAsync();
+    }
+
     var document = new Module
     {
         Namespace = ns,
@@ -165,7 +190,7 @@ rootCommand.SetAction(async parseResult =>
         Outputs = config.Outputs,
         Source = parseResult.GetRequiredValue(sourceOption),
         Readme = await readme.ReadToEndAsync(),
-        Latest = !parseResult.GetRequiredValue(latestOption),
+        Latest = latest,
     };
 
     readme.Dispose();
