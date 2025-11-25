@@ -10,39 +10,46 @@ using Anamnesis.Client.Model;
 using Google.Cloud.Firestore;
 using Google.Cloud.Storage.V1;
 
-var namespaceArgument = new Argument<string>("namespace")
+var namespaceOption = new Option<string>("--namespace")
 {
     Description = "The namespace to upload the module to",
+    Required = true,
 };
 
-var nameArgument = new Argument<string>("name")
+var nameOption = new Option<string>("--name")
 {
     Description = "The name of the module to upload",
+    Required = true,
 };
 
-var systemArgument = new Argument<string>("system")
+var systemOption = new Option<string>("--system")
 {
     Description = "The system of the module to upload",
+    Required = true,
 };
 
-var versionArgument = new Argument<string>("version")
+var versionOption = new Option<string>("--version")
 {
     Description = "The version of the module to upload",
+    Required = true,
 };
 
-var summaryArgument = new Argument<string>("summary")
+var summaryOption = new Option<string>("--summary")
 {
     Description = "The summary of the module to upload",
+    Required = true,
 };
 
-var sourceArgument = new Argument<string>("source")
+var sourceOption = new Option<string>("--source")
 {
     Description = "The source of the module to upload",
+    Required = true,
 };
 
-var directoryArgument = new Argument<DirectoryInfo>("directory")
+var directoryOption = new Option<DirectoryInfo>("--directory")
 {
     Description = "The directory to upload as a module",
+    Required = true,
 };
 
 var latestOption = new Option<bool>("--no-latest")
@@ -69,13 +76,13 @@ var projectOption = new Option<string>("--project")
 };
 
 var rootCommand = new RootCommand("Anamnesis registry client");
-rootCommand.Arguments.Add(namespaceArgument);
-rootCommand.Arguments.Add(nameArgument);
-rootCommand.Arguments.Add(systemArgument);
-rootCommand.Arguments.Add(versionArgument);
-rootCommand.Arguments.Add(directoryArgument);
-rootCommand.Arguments.Add(summaryArgument);
-rootCommand.Arguments.Add(sourceArgument);
+rootCommand.Options.Add(namespaceOption);
+rootCommand.Options.Add(nameOption);
+rootCommand.Options.Add(systemOption);
+rootCommand.Options.Add(versionOption);
+rootCommand.Options.Add(directoryOption);
+rootCommand.Options.Add(summaryOption);
+rootCommand.Options.Add(sourceOption);
 
 rootCommand.Options.Add(bucketOption);
 rootCommand.Options.Add(databaseOption);
@@ -86,7 +93,7 @@ rootCommand.SetAction(async parseResult =>
 {
     await Console.Out.WriteLineAsync("Uploading module to Cloud Storage");
 
-    var directory = parseResult.GetRequiredValue(directoryArgument);
+    var directory = parseResult.GetRequiredValue(directoryOption);
 
     using var moduleZip = new MemoryStream();
     await ZipFile.CreateFromDirectoryAsync(
@@ -96,10 +103,10 @@ rootCommand.SetAction(async parseResult =>
         false
     );
 
-    var ns = parseResult.GetRequiredValue(namespaceArgument);
-    var name = parseResult.GetRequiredValue(nameArgument);
-    var system = parseResult.GetRequiredValue(systemArgument);
-    var version = parseResult.GetRequiredValue(versionArgument);
+    var ns = parseResult.GetRequiredValue(namespaceOption);
+    var name = parseResult.GetRequiredValue(nameOption);
+    var system = parseResult.GetRequiredValue(systemOption);
+    var version = parseResult.GetRequiredValue(versionOption);
 
     using var storage = await StorageClient.CreateAsync();
 
@@ -153,10 +160,10 @@ rootCommand.SetAction(async parseResult =>
         Name = name,
         System = system,
         Version = version,
-        Summary = parseResult.GetRequiredValue(summaryArgument),
+        Summary = parseResult.GetRequiredValue(summaryOption),
         Variables = config!.Variables,
         Outputs = config.Outputs,
-        Source = parseResult.GetRequiredValue(sourceArgument),
+        Source = parseResult.GetRequiredValue(sourceOption),
         Readme = await readme.ReadToEndAsync(),
         Latest = !parseResult.GetRequiredValue(latestOption),
     };
