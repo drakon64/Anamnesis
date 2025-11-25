@@ -8,14 +8,12 @@ pkgs.mkShellNoCC {
     lon
     nixfmt-rfc-style
     opentofu
+    terraform-config-inspect
   ];
 
   passthru = {
     client = pkgs.mkShellNoCC {
-      packages = with pkgs; [
-        (callPackage ./. { }).client
-        terraform-config-inspect
-      ];
+      packages = [ (pkgs.callPackage ./. { }).client ];
     };
 
     lon = pkgs.mkShellNoCC {
