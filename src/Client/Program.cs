@@ -28,7 +28,7 @@ var systemOption = new Option<string>("--system")
     Required = true,
 };
 
-var versionOption = new Option<string>("--version")
+var versionOption = new Option<string>("--module-version")
 {
     Description = "The version of the module to upload",
     Required = true,
