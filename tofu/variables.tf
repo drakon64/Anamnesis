@@ -32,5 +32,6 @@ variable "state_bucket" {
 
 variable "use_ghcr" {
   description = "Use pre-built Anamnesis images from GitHub Packages"
+  type        = bool
   default     = true
 }
