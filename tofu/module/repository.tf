@@ -22,6 +22,7 @@ resource "google_cloud_run_v2_service" "repository" {
   location = each.value
   name     = "anamnesis"
 
+  custom_audiences     = ["https://${var.domain}"]
   default_uri_disabled = true
   ingress              = "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER"
 
