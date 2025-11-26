@@ -3,6 +3,7 @@
   lib,
   buildDotnetModule,
   dotnetCorePackages,
+  jq,
   terraform-config-inspect,
   ...
 }:
@@ -38,7 +39,10 @@ buildDotnetModule (finalAttrs: {
 
   postFixup = ''
     wrapProgram $out/bin/Anamnesis.Client --prefix PATH : ${
-      lib.makeBinPath [ terraform-config-inspect ]
+      lib.makeBinPath [
+        jq
+        terraform-config-inspect
+      ]
     }
   '';
 

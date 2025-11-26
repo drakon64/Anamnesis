@@ -141,6 +141,28 @@ rootCommand.SetAction(async parseResult =>
         process.StandardOutput.BaseStream
     );
 
+    var configJsonPath = Path.GetTempFileName();
+    var configJsonFile = new FileInfo(configJsonPath);
+    await using var configJson = configJsonFile.CreateText();
+    await configJson.WriteAsync(await process.StandardOutput.ReadToEndAsync());
+    configJson.Close();
+
+    foreach (var variable in config!.Variables)
+    {
+        var jqProcessStartInfo = new ProcessStartInfo { FileName = "jq" };
+        jqProcessStartInfo.ArgumentList.Add("-cM");
+        jqProcessStartInfo.ArgumentList.Add($".variables.{variable.Key}.default");
+        jqProcessStartInfo.ArgumentList.Add(configJsonPath);
+        jqProcessStartInfo.RedirectStandardOutput = true;
+
+        using var jq = Process.Start(jqProcessStartInfo);
+        await jq!.WaitForExitAsync();
+
+        config.Variables[variable.Key].Default = jq.StandardOutput.ReadToEnd();
+    }
+
+    File.Delete(configJsonPath);
+
     StreamReader readme;
 
     try
@@ -186,7 +208,7 @@ rootCommand.SetAction(async parseResult =>
         System = system,
         Version = version,
         Summary = parseResult.GetRequiredValue(summaryOption),
-        Variables = config!.Variables,
+        Variables = config.Variables,
         Outputs = config.Outputs,
         Source = parseResult.GetRequiredValue(sourceOption),
         Readme = await readme.ReadToEndAsync(),

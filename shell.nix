@@ -5,6 +5,7 @@ pkgs.mkShellNoCC {
   packages = with pkgs; [
     dotnetCorePackages.sdk_10_0
     graphviz
+    jq
     lon
     nixfmt-rfc-style
     opentofu
