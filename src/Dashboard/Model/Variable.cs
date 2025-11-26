@@ -11,13 +11,17 @@ public sealed class Variable
     [JsonPropertyName("name")]
     public required string Name { get; init; }
 
+    [FirestoreProperty("description")]
+    [JsonPropertyName("description")]
+    public string? Description { get; init; }
+
     [FirestoreProperty("type")]
     [JsonPropertyName("type")]
     public string? Type { get; init; }
 
-    [FirestoreProperty("description")]
-    [JsonPropertyName("description")]
-    public string? Description { get; init; }
+    [FirestoreProperty("default")]
+    [JsonPropertyName("default")]
+    public string Default { get; init; }
 
     [FirestoreProperty("required")]
     [JsonPropertyName("required")]

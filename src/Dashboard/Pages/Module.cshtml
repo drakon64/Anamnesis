@@ -25,6 +25,14 @@
         {
             <h4>@variable.Value.Name</h4>
             <table style="border: 1px solid">
+                @if (variable.Value.Description != null)
+                {
+                    <tr style="border: 1px solid">
+                        <th style="border: 1px solid">Description</th>
+                        <td style="border: 1px solid">@variable.Value.Description</td>
+                    </tr>
+                }
+
                 @if (variable.Value.Type != null)
                 {
                     <tr style="border: 1px solid">
@@ -33,13 +41,10 @@
                     </tr>
                 }
 
-                @if (variable.Value.Description != null)
-                {
-                    <tr style="border: 1px solid">
-                        <th style="border: 1px solid">Description</th>
-                        <td style="border: 1px solid">@variable.Value.Description</td>
-                    </tr>
-                }
+                <tr style="border: 1px solid">
+                    <th style="border: 1px solid">Type</th>
+                    <td style="border: 1px solid">@variable.Value.Default</td>
+                </tr>
 
                 <tr style="border: 1px solid">
                     <th style="border: 1px solid">Required</th>
