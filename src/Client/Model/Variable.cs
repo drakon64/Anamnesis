@@ -20,7 +20,7 @@ internal sealed class Variable
     public string? Type { get; init; }
 
     [FirestoreProperty("default")]
-    [JsonPropertyName("default")]
+    [JsonIgnore]
     public string? Default { get; set; }
 
     [FirestoreProperty("required")]

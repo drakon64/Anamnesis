@@ -137,15 +137,13 @@ rootCommand.SetAction(async parseResult =>
     using var process = Process.Start(processStartInfo);
     await process!.WaitForExitAsync();
 
-    var config = await JsonSerializer.DeserializeAsync<ModuleConfig>(
-        process.StandardOutput.BaseStream
-    );
-
+    var configJson = await process.StandardOutput.ReadToEndAsync();
+    var config = JsonSerializer.Deserialize<ModuleConfig>(configJson);
     var configJsonPath = Path.GetTempFileName();
     var configJsonFile = new FileInfo(configJsonPath);
-    await using var configJson = configJsonFile.CreateText();
-    await configJson.WriteAsync(await process.StandardOutput.ReadToEndAsync());
-    configJson.Close();
+    await using var configJsonStream = configJsonFile.CreateText();
+    await configJsonStream.WriteAsync(configJson);
+    configJsonStream.Close();
 
     foreach (var variable in config!.Variables)
     {
@@ -158,7 +156,7 @@ rootCommand.SetAction(async parseResult =>
         using var jq = Process.Start(jqProcessStartInfo);
         await jq!.WaitForExitAsync();
 
-        config.Variables[variable.Key].Default = jq.StandardOutput.ReadToEnd();
+        config.Variables[variable.Key].Default = jq.StandardOutput.ReadToEnd().TrimEnd();
     }
 
     File.Delete(configJsonPath);
