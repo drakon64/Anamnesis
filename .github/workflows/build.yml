@@ -98,7 +98,6 @@ jobs:
         uses: cachix/cachix-action@v16
         with:
           name: drakon64
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Build Nix shell
         run: nix-shell -A opentofu --run "exit"
