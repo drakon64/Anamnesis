@@ -42,19 +42,12 @@ jobs:
         run: cachix watch-exec drakon64 -- nix-build -A repository.docker -A dashboard.docker -A client
 
       - name: Upload to Cachix
-        run: |
-          nix eval --file default.nix --raw repository | cachix push drakon64
-          nix eval --file default.nix --raw repository.docker | cachix push drakon64
-          nix eval --file default.nix --raw dashboard | cachix push drakon64
-          nix eval --file default.nix --raw dashboard.docker | cachix push drakon64
-          nix eval --file default.nix --raw client | cachix push drakon64
+        run: cachix push drakon64 $(nix eval --file default.nix --raw repository.docker) $(nix eval --file default.nix --raw dashboard.docker) $(nix eval --file default.nix --raw client)
 
       - name: Create Cachix pins
         run: |
-          cachix pin drakon64 anamnesis "$(nix eval --file default.nix --raw repository)" --keep-revisions 1
-          cachix pin drakon64 anamnesis-docker "$(nix eval --file default.nix --raw repository.docker)" --keep-revisions 1
-          cachix pin drakon64 anamnesis-dashboard "$(nix eval --file default.nix --raw dashboard)" --keep-revisions 1
-          cachix pin drakon64 anamnesis-dashboard-docker "$(nix eval --file default.nix --raw dashboard.docker)" --keep-revisions 1
+          cachix pin drakon64 anamnesis "$(nix eval --file default.nix --raw repository.docker)" --keep-revisions 1
+          cachix pin drakon64 anamnesis-dashboard "$(nix eval --file default.nix --raw dashboard.docker)" --keep-revisions 1
           cachix pin drakon64 anamnesis-client "$(nix eval --file default.nix --raw client)" --keep-revisions 1
 
       - run: |
