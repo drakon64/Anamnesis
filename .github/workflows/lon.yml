@@ -57,7 +57,8 @@ jobs:
         if: ${{ env.NEW_REPOSITORY_HASH != env.CURRENT_REPOSITORY_HASH || env.NEW_DASHBOARD_HASH != env.CURRENT_DASHBOARD_HASH || env.NEW_CLIENT_HASH != env.CURRENT_CLIENT_HASH || env.NEW_SHELL_HASH != env.CURRENT_SHELL_HASH }}
 
       - run: |
-          gh pr comment lon/nixpkgs -b "```\n$(nix store diff-closures $CURRENT_SHELL_HASH $NEW_SHELL_HASH)\n```"
+          BODY=$(echo -e "\`\`\`\n$(nix store diff-closures $CURRENT_SHELL_HASH $NEW_SHELL_HASH)\n\`\`\`")
+          gh pr comment lon/nixpkgs -b "$BODY"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ env.NEW_SHELL_HASH != env.CURRENT_SHELL_HASH }}
