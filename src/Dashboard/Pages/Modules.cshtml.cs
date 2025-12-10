@@ -15,7 +15,8 @@ public class ModulesModel : PageModel
 
         Modules =
             from module in await Program
-                .ModulesCollection.WhereEqualTo("latest", true)
+                .ModulesCollection.WhereEqualTo("namespace", ns)
+                .WhereEqualTo("latest", true)
                 .GetSnapshotAsync()
             select module.ConvertTo<Module>();
     }
