@@ -58,7 +58,7 @@ jobs:
 
       - run: |
           BODY=$(echo -e "\`\`\`\n$(nix store diff-closures $CURRENT_SHELL_HASH $NEW_SHELL_HASH)\n\`\`\`")
-          gh pr comment lon/nixpkgs -b "$BODY"
+          gh pr edit lon/nixpkgs -b "$BODY"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ env.NEW_SHELL_HASH != env.CURRENT_SHELL_HASH }}
