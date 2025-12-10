@@ -76,13 +76,13 @@
   },
   {
     "pname": "Google.Cloud.Firestore",
-    "version": "4.0.0",
-    "hash": "sha256-EE2ebFz1AO0k1EmLBbiEdoh+d/ZlWae104drDKMkEmU="
+    "version": "4.1.0",
+    "hash": "sha256-2/uylHvOXJ4JzrK7rqndn9gWEWVblzzokk3OiLTrK2g="
   },
   {
     "pname": "Google.Cloud.Firestore.V1",
-    "version": "4.0.0",
-    "hash": "sha256-HjiA0kq/xrEDnwxNLLLTNfRo+3fSyIbhesNotsLHa7Q="
+    "version": "4.1.0",
+    "hash": "sha256-SNT8bzIj9hymwrVnv08TRYIUsjBjQk/ceLVEsKjeLNM="
   },
   {
     "pname": "Google.Cloud.Location",
@@ -161,13 +161,13 @@
   },
   {
     "pname": "System.CommandLine",
-    "version": "2.0.0",
-    "hash": "sha256-cUJTPCLcnA6959PGdwWw8zsjFxhYGI+SZeIxnMC/Cwc="
+    "version": "2.0.1",
+    "hash": "sha256-NDBiPUt/ZZIMBcLHpF/6IMX/UpfsC/XnH3p4i4MHCFw="
   },
   {
     "pname": "System.IO.Hashing",
-    "version": "10.0.0",
-    "hash": "sha256-zq3baIIsQ1kaY4CVl0vpkDcZb2ZNwT7wC0wDqzEN5oI="
+    "version": "10.0.1",
+    "hash": "sha256-k8EHcxnLitXo0CxoDZAxFmUlJJdKZVsZJ2+9zDMYB94="
   },
   {
     "pname": "System.Management",
