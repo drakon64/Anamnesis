@@ -54,3 +54,5 @@ jobs:
           LON_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LON_LABELS: "lon,bot"
         if: ${{ env.NEW_REPOSITORY_HASH != env.CURRENT_REPOSITORY_HASH || env.NEW_DASHBOARD_HASH != env.CURRENT_DASHBOARD_HASH || env.NEW_CLIENT_HASH != env.CURRENT_CLIENT_HASH || env.NEW_SHELL_HASH != env.CURRENT_SHELL_HASH }}
+
+      - run: nix store diff-closures $CURRENT_SHELL_HASH $NEW_SHELL_HASH
