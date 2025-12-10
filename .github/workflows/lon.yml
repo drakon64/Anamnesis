@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Install Lix
-        uses: samueldr/lix-gha-installer-action@v2025-02-26.prerelease
+        uses: canidae-solutions/lix-quick-install-action@v3
 
       - name: Install Cachix
         uses: cachix/cachix-action@v16
