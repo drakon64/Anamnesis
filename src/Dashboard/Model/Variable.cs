@@ -7,10 +7,6 @@ namespace Anamnesis.Dashboard.Model;
 [FirestoreData]
 public sealed class Variable
 {
-    [FirestoreProperty("name")]
-    [JsonPropertyName("name")]
-    public required string Name { get; init; }
-
     [FirestoreProperty("description")]
     [JsonPropertyName("description")]
     public string? Description { get; init; }

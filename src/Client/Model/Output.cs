@@ -7,10 +7,6 @@ namespace Anamnesis.Client.Model;
 [FirestoreData]
 internal sealed class Output
 {
-    [FirestoreProperty("name")]
-    [JsonPropertyName("name")]
-    public required string Name { get; init; }
-
     [FirestoreProperty("description")]
     [JsonPropertyName("description")]
     public string? Description { get; init; }

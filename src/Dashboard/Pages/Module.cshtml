@@ -23,7 +23,7 @@
         <h3>Variables</h3>
         @foreach (var variable in Model.Module.Variables)
         {
-            <h4>@variable.Value.Name</h4>
+            <h4>@variable.Key</h4>
             <table style="border: 1px solid">
                 @if (variable.Value.Description != null)
                 {
@@ -65,7 +65,7 @@
         <h3>Outputs</h3>
         @foreach (var output in Model.Module.Outputs)
         {
-            <h4>@output.Value.Name</h4>
+            <h4>@output.Key</h4>
             <table style="border: 1px solid">
                 @if (output.Value.Description != null)
                 {
