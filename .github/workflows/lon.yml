@@ -53,7 +53,9 @@ jobs:
         env:
           LON_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LON_LABELS: "dependencies,Nix"
+        id: lon
         if: ${{ env.NEW_REPOSITORY_HASH != env.CURRENT_REPOSITORY_HASH || env.NEW_DASHBOARD_HASH != env.CURRENT_DASHBOARD_HASH || env.NEW_CLIENT_HASH != env.CURRENT_CLIENT_HASH || env.NEW_SHELL_HASH != env.CURRENT_SHELL_HASH }}
 
-      - run: nix store diff-closures $CURRENT_SHELL_HASH $NEW_SHELL_HASH
+      - run: |
+          gh pr comment $(echo "{{ steps.lon.output }}" | grep 'Opened Pull Request: ' | awk '{ print $4 }') -b "```\n$(nix store diff-closures $CURRENT_SHELL_HASH $NEW_SHELL_HASH)\n```"
         if: ${{ env.NEW_SHELL_HASH != env.CURRENT_SHELL_HASH }}
