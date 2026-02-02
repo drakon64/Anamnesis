@@ -10,29 +10,19 @@
     "hash": "sha256-U8K+B3QFmWjI6zoF7Z7EPk22dsJ8YcZbbAb1Gaywjog="
   },
   {
-    "pname": "Google.Api.Gax",
-    "version": "4.9.0",
-    "hash": "sha256-3fmCAf2Ij1UQHiydlZM0J8QsfTNWrR5zs7ucCzsYM0s="
-  },
-  {
     "pname": "Google.Api.Gax.Grpc",
     "version": "4.12.1",
     "hash": "sha256-0H13wclStD6LoGHXMjT4wd+SYKuOZsWRiMWEle74EAk="
   },
   {
     "pname": "Google.Api.Gax.Rest",
-    "version": "4.9.0",
-    "hash": "sha256-Lbcj8WtKqg2O9hIlSJPdRwf7ixz6qY4fKBG2ybphY+Q="
+    "version": "4.12.1",
+    "hash": "sha256-mUVXq/N2V81LpfK2K6TY15rtYgm7bpzPDlhpfzW8jF0="
   },
   {
     "pname": "Google.Apis",
-    "version": "1.68.0",
-    "hash": "sha256-KUFT+rWxzeWVMWc34cqrFs1N/FxvG15vWqZruwWXHX4="
-  },
-  {
-    "pname": "Google.Apis",
-    "version": "1.69.0",
-    "hash": "sha256-/9JN0CZIFZnmGS69ki38RlNzQiwp4yO0MFDeRk1slsg="
+    "version": "1.71.0",
+    "hash": "sha256-qkVfe6NWY7HmMWdljpsFQaA9VxUzCDAJ58MGXGO9+WY="
   },
   {
     "pname": "Google.Apis",
@@ -41,13 +31,13 @@
   },
   {
     "pname": "Google.Apis.Auth",
-    "version": "1.68.0",
-    "hash": "sha256-pptb3sxuFZMREdgGDJzdOSfn84XF5PMzzXwe+w7N+kQ="
+    "version": "1.69.0",
+    "hash": "sha256-T6n3hc+KpgHNqQQeJLOmgHQWkjBvnhIob5giHabREV8="
   },
   {
     "pname": "Google.Apis.Auth",
-    "version": "1.69.0",
-    "hash": "sha256-T6n3hc+KpgHNqQQeJLOmgHQWkjBvnhIob5giHabREV8="
+    "version": "1.71.0",
+    "hash": "sha256-m6cC9rKr3qiu+XfEEn8nYtJY8udOksNJXv8lxJVN0lQ="
   },
   {
     "pname": "Google.Apis.Auth",
@@ -56,13 +46,8 @@
   },
   {
     "pname": "Google.Apis.Core",
-    "version": "1.68.0",
-    "hash": "sha256-eoGiEopf3PfqAJYxBqomtV6f2mMBeXyjyXlXOAqbsis="
-  },
-  {
-    "pname": "Google.Apis.Core",
-    "version": "1.69.0",
-    "hash": "sha256-IW1AOY8o6hHkrc/tINsS/VCOUrOSoXb6OCSEF6gamkc="
+    "version": "1.71.0",
+    "hash": "sha256-8ZbG1lhtOlzUOzaW7wglRPuFxFJeXwOTJdsCyHDKx5s="
   },
   {
     "pname": "Google.Apis.Core",
@@ -71,8 +56,8 @@
   },
   {
     "pname": "Google.Apis.Storage.v1",
-    "version": "1.69.0.3707",
-    "hash": "sha256-CS3QoU7YElrrkUwSyTJfR58GlkOUNtkCPHzuXxbgGTE="
+    "version": "1.71.0.3920",
+    "hash": "sha256-9K1i8iseHswpTJijSzOQswzzK/5/ushv3dgZU7Iyrzg="
   },
   {
     "pname": "Google.Cloud.Firestore",
@@ -91,8 +76,8 @@
   },
   {
     "pname": "Google.Cloud.Storage.V1",
-    "version": "4.13.0",
-    "hash": "sha256-PsC3r+oJejRfGGDNHNT0n1FP89qlU5VPvBk3M4G6Wrc="
+    "version": "4.14.0",
+    "hash": "sha256-z+R26VKQ/sxzRES3KXKuHjooTcnB6pGDztBiW8dZzBM="
   },
   {
     "pname": "Google.LongRunning",
@@ -146,11 +131,6 @@
   },
   {
     "pname": "Newtonsoft.Json",
-    "version": "13.0.3",
-    "hash": "sha256-hy/BieY4qxBWVVsDqqOPaLy1QobiIapkbrESm6v2PHc="
-  },
-  {
-    "pname": "Newtonsoft.Json",
     "version": "13.0.4",
     "hash": "sha256-8JCB1FdAW681qXP6DFDWvycu1oPyVoxaYgpJ2pUvZSk="
   },
@@ -161,13 +141,13 @@
   },
   {
     "pname": "System.CommandLine",
-    "version": "2.0.1",
-    "hash": "sha256-NDBiPUt/ZZIMBcLHpF/6IMX/UpfsC/XnH3p4i4MHCFw="
+    "version": "2.0.2",
+    "hash": "sha256-PK3wKHjY8FHkPV75Z4ouxKU67WcuVSiMFjAkBs+iSAo="
   },
   {
     "pname": "System.IO.Hashing",
-    "version": "10.0.1",
-    "hash": "sha256-k8EHcxnLitXo0CxoDZAxFmUlJJdKZVsZJ2+9zDMYB94="
+    "version": "10.0.2",
+    "hash": "sha256-EJJnwGFb3pA25VbUqXfK/p1h07vPoxoYqz3GiaGHuP8="
   },
   {
     "pname": "System.Management",
