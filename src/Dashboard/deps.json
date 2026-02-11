@@ -81,8 +81,8 @@
   },
   {
     "pname": "Markdig",
-    "version": "0.44.0",
-    "hash": "sha256-EVuUTv5l68t7bP2vJ2njypxuRzH52AztXyBF9LUJrrI="
+    "version": "0.45.0",
+    "hash": "sha256-V4hpSbJ45/slnABZXENTm1RgTWVBYcjDZ2ZdtW2JW3E="
   },
   {
     "pname": "Microsoft.Bcl.AsyncInterfaces",
