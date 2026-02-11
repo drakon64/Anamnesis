@@ -146,8 +146,8 @@
   },
   {
     "pname": "System.IO.Hashing",
-    "version": "10.0.2",
-    "hash": "sha256-EJJnwGFb3pA25VbUqXfK/p1h07vPoxoYqz3GiaGHuP8="
+    "version": "10.0.3",
+    "hash": "sha256-IK2hZpaQysKYAoM0AbEVgTwla5hhqaop7360Tb2tZzk="
   },
   {
     "pname": "System.Management",
