@@ -7,7 +7,7 @@ pkgs.mkShellNoCC {
     graphviz
     jq
     lon
-    nixfmt-rfc-style
+    nixfmt
     opentofu
     terraform-config-inspect
   ];
