@@ -62,7 +62,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Repository to GitHub Packages
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: src/Repository
           push: true
@@ -71,7 +71,7 @@ jobs:
           SOURCE_DATE_EPOCH: 0
 
       - name: Upload Dashboard to GitHub Packages
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: src/Dashboard
           push: true
