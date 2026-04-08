@@ -11,7 +11,7 @@ data "docker_registry_image" "dashboard" {
 data "google_artifact_registry_docker_image" "dashboard" {
   count = var.use_ghcr ? 0 : 1
 
-  image_name    = "anamnesis-repository:latest"
+  image_name    = "anamnesis-dashboard:latest"
   location      = var.artifact_registry_location
   repository_id = google_artifact_registry_repository.artifact_registry.repository_id
 }
