@@ -27,7 +27,7 @@ jobs:
       packages: write
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Install Lix
         uses: samueldr/lix-gha-installer-action@v2025-02-26.prerelease
@@ -89,7 +89,7 @@ jobs:
       id-token: write
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Install Lix
         uses: samueldr/lix-gha-installer-action@v2025-02-26.prerelease
