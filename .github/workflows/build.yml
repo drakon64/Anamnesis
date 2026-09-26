@@ -1,0 +1,65 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - src/**/**.cs
+      - src/**/*.csproj
+      - src/**/package.nix
+      - src/**/deps.json
+      - src/**/Dockerfile
+      - src/Dashboard/Pages/*.cshtml
+      - default.nix
+      - lon.nix
+      - lon.lock
+      - .github/workflows/build.yml
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install Lix
+        uses: samueldr/lix-gha-installer-action@v2025-02-26.prerelease
+
+      - name: Build
+        run: nix-build -A repository.docker -A dashboard.docker
+
+      - run: |
+          docker load < result
+          docker load < result-2
+
+      - name: Login to GitHub Packages
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Repository to GitHub Packages
+        uses: docker/build-push-action@v7
+        with:
+          context: src/Repository
+          push: true
+          tags: ghcr.io/drakon64/anamnesis:latest
+        env:
+          SOURCE_DATE_EPOCH: 0
+
+      - name: Upload Dashboard to GitHub Packages
+        uses: docker/build-push-action@v7
+        with:
+          context: src/Dashboard
+          push: true
+          tags: ghcr.io/drakon64/anamnesis-dashboard:latest
+        env:
+          SOURCE_DATE_EPOCH: 0
