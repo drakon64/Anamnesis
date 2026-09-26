@@ -31,7 +31,7 @@ buildDotnetModule (finalAttrs: {
 
   projectFile = "Anamnesis.csproj";
 
-  dotnet-sdk = dotnetCorePackages.sdk_10_0;
+  dotnet-sdk = dotnetCorePackages.sdk_11_0;
   dotnet-runtime = null;
 
   executables = [ "Anamnesis" ];

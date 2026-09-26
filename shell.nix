@@ -3,7 +3,7 @@
 }:
 pkgs.mkShellNoCC {
   packages = with pkgs; [
-    dotnetCorePackages.sdk_10_0
+    dotnetCorePackages.sdk_11_0
     graphviz
     jq
     lon
