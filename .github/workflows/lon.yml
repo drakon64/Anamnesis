@@ -20,12 +20,6 @@ jobs:
       - name: Install Lix
         uses: samueldr/lix-gha-installer-action@v2025-02-26.prerelease
 
-      - name: Install Cachix
-        uses: cachix/cachix-action@v17
-        with:
-          name: drakon64
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-
       - name: Build Nix shell
         run: nix-shell -A lon --run "exit"
 
