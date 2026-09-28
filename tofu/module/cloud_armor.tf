@@ -1,6 +1,6 @@
 module "cloud_armor" {
   source  = "GoogleCloudPlatform/cloud-armor/google"
-  version = "8.1.0"
+  version = "9.0.0"
 
   name       = "anamnesis"
   project_id = data.google_project.project.project_id
